@@ -14,6 +14,8 @@ function tube(parent,points,r,color,segments=20){const curve=new T.CatmullRomCur
 function cylinderBetween(parent,a,b,r1,r2,color){const start=new T.Vector3(...a),end=new T.Vector3(...b),d=end.clone().sub(start);const m=mesh(parent,new T.CylinderGeometry(r2,r1,d.length(),12),color);m.position.copy(start.add(end).multiplyScalar(.5));m.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),d.normalize());return m;}
 function group(parent,x=0,y=0,z=0){const g=new T.Group();g.position.set(x,y,z);parent.add(g);return g;}
 function seeded(i){return ((Math.sin(i*127.1+311.7)*43758.5453)%1+1)%1;}
+function pulse(t,start,length){return Math.sin(Math.PI*clamp((t-start)/length,0,1))**2;}
+function sip(a){return a.action?.kind==='drink'&&a.action.phase==='doing'?pulse(a.action.phaseTime%1.8,.12,1.1):0;}
 
 function pot(g,r,h,color){
   const points=[[0,0],[r*.64,0],[r*.69,.04],[r*.96,h-.045],[r,h-.035],[r,h],[r*.87,h],[r*.84,h-.06],[0,h-.06]].map(p=>new T.Vector2(...p));
@@ -54,8 +56,8 @@ function makeTree(o){
     for(const [x,y,z] of [[-.35,1.51,.04],[.29,1.67,-.08],[-.02,1.84,-.12],[.12,1.44,.30]])tube(g,[[0,.77,0],[x*.6,1.12,z*.5],[x,y,z]],.026,0x83694f);
     tube(g,[[0,.78,0],[-.38,.97,.15],[-.70,1.05,.28]],.023,0x83694f);
   }
-  const volumes=canopy({...o,x:0,z:0,growth:1});g.userData.newLeaves=[];
-  volumes.forEach((v,i)=>{const f=foliage(g,v,i);if(v.newLeaf)g.userData.newLeaves.push({group:f,scale:f.scale.clone()});});
+  const volumes=canopy({...o,x:0,z:0,growth:1});g.userData.newLeaves=[];g.userData.foliage=[];
+  volumes.forEach((v,i)=>{const f=foliage(g,v,i);g.userData.foliage.push(f);if(v.newLeaf)g.userData.newLeaves.push({group:f,scale:f.scale.clone()});});
   const branch=sprout({...o,x:0,z:0},1),twig=group(g,branch.from.x,branch.from.y,branch.from.z);
   cylinderBetween(twig,[0,0,0],[branch.to.x-branch.from.x,branch.to.y-branch.from.y,0],.016,.006,0x8a8060);g.userData.twig=twig;
   return g;
@@ -85,17 +87,18 @@ function makeShade(){
   for(let i=0;i<8;i++)box(g,0,.32+i*.10,0,.86,.074,.07,i%2?0xbca476:0xc6ae7d,.012);
   return g;
 }
-function makeSparrow(id){
+export function makeSparrow(id){
   const g=new T.Group(),warm=id==='sparrow-a',coat=warm?0x927354:0x7b7968,cap=warm?0x76533b:0x696250;
   const torso=group(g,0,.16,0);
   ellipsoid(torso,0,.07,-.015,.15,.17,.21,coat);
   ellipsoid(torso,0,.025,.095,.128,.13,.145,0xcfc6a8);
   const head=group(torso,0,.20,.105);ellipsoid(head,0,0,0,.112,.117,.115,cap);
   ellipsoid(head,0,-.036,.054,.095,.07,.080,0xddd3b6);
+  const eyes=[];
   for(const s of [-1,1]){
     ellipsoid(head,s*.083,-.014,.046,.020,.028,.029,0x423a2c);
-    ellipsoid(head,s*.091,.024,.066,.017,.020,.020,0x222c24);
-    ellipsoid(head,s*.099,.030,.073,.004,.005,.005,0xe8e4d4);
+    const eye=group(head,s*.091,.024,.066);ellipsoid(eye,0,0,0,.017,.020,.020,0x222c24);
+    ellipsoid(eye,s*.008,.006,.007,.004,.005,.005,0xe8e4d4);eyes.push(eye);
   }
   const beak=mesh(head,new T.ConeGeometry(.033,.10,10),0x74613e,0,-.015,.15);beak.rotation.x=Math.PI/2;
   const wings=[];
@@ -110,9 +113,9 @@ function makeSparrow(id){
     const foot=group(g,s*.058,0,.018);tube(foot,[[0,.105,-.015],[0,.026,0],[0,.014,.065]],.012,0x816c4b,6);
     for(const dx of [-.035,.035])tube(foot,[[0,.016,.012],[dx,.01,.053]],.008,0x816c4b,4);feet.push(foot);
   }
-  g.userData={torso,head,wings,feet,tail};return g;
+  g.userData={torso,head,wings,feet,tail,eyes};return g;
 }
-function makeSnail(){
+export function makeSnail(){
   const g=new T.Group(),body=group(g);
   ellipsoid(body,0,.075,0,.105,.07,.24,0xb8aa7c);
   ellipsoid(body,0,.056,-.12,.11,.032,.24,0xc6b88d);
@@ -129,7 +132,7 @@ function butterflyWing(){
   const s=new T.Shape();s.moveTo(0,0);s.bezierCurveTo(.10,.19,.32,.21,.30,.08);s.bezierCurveTo(.29,-.01,.19,-.025,.17,-.05);s.bezierCurveTo(.31,-.18,.16,-.24,.06,-.13);s.quadraticCurveTo(.01,-.08,0,0);
   return new T.ExtrudeGeometry(s,{depth:.008,bevelEnabled:true,bevelThickness:.008,bevelSize:.007,bevelSegments:2,steps:1});
 }
-function makeButterfly(){
+export function makeButterfly(){
   const g=new T.Group(),wings=[],geo=butterflyWing();
   ellipsoid(g,0,.035,0,.017,.022,.11,0x625b39);ellipsoid(g,0,.043,.10,.031,.031,.032,0x625b39);
   for(const sign of [-1,1]){
@@ -139,6 +142,50 @@ function makeButterfly(){
   }
   for(const s of [-1,1])tube(g,[[s*.015,.055,.11],[s*.03,.08,.15],[s*.045,.09,.16]],.004,0x6b6848,6);
   g.userData={wings};return g;
+}
+
+// ponytail: short pose cycles, not a clip engine; they never change destinations or event memory.
+export function animateResident(g,a,w){
+  const p=g.userData,t=w.time,dt=clamp(t-(p.time??t),0,.1),blend=1-Math.exp(-dt*12),moving=a.action?.phase==='moving',landing=a.action?.phase==='landing';
+  if(p.time===undefined||t<p.time)g.rotation.y=a.heading;
+  p.time=t;g.position.set(a.x,a.y,a.z);
+  const turn=Math.atan2(Math.sin(a.heading-g.rotation.y),Math.cos(a.heading-g.rotation.y));g.rotation.y+=turn*(1-Math.exp(-dt*(a.species==='snail'?4:10)));
+  const u=moving?clamp(a.action.phaseTime/a.action.travel,0,1):0;
+  if(a.species==='sparrow'){
+    const warm=a.id==='sparrow-a',clock=t+(warm?0:3.71),cycle=clock%13.7,hop=moving&&a.action.locomotion==='hop',drinking=a.action?.kind==='drink'&&a.action.phase==='doing';
+    const idle=!moving&&!landing&&!drinking,ruffle=idle?pulse(cycle,9.4,.9):0,shift=idle?pulse(cycle,4.2,.85)-pulse(cycle,5.5,.85):0;
+    const crouch=moving?Math.max(0,1-u/.13):landing?pulse(a.action.phaseTime,0,.38):0,dip=sip(a);
+    p.flight=(p.flight||0)+((moving&&!hop?1:0)-(p.flight||0))*blend;
+    p.torso.rotation.x+=((drinking?.08+dip: moving?-.20+.32*u:0)-p.torso.rotation.x)*blend;
+    p.torso.rotation.z+=((idle?shift*.065+Math.sin(clock*29)*ruffle*.045:clamp(-turn,-.2,.2))-p.torso.rotation.z)*blend;
+    p.torso.position.y+=(.16-.04*crouch-.045*dip+(idle?Math.sin(clock*2.1)*.004:0)-p.torso.position.y)*blend;
+    p.torso.scale.set(1+ruffle*.035,1-crouch*.10+ruffle*.025,1+crouch*.06);
+    const other=a.action?.kind==='watch'?w.residents[a.action.targetId]:(a.seen||[]).map(id=>w.residents[id]).filter(Boolean).sort((b,c)=>Math.hypot(b.x-a.x,b.z-a.z)-Math.hypot(c.x-a.x,c.z-a.z))[0];
+    const glance=(seeded(Math.floor(clock/(warm?2.3:3.1))+(warm?11:31))-.5)*1.25;
+    const look=moving||drinking?0:other?clamp(Math.atan2(Math.sin(Math.atan2(other.x-a.x,other.z-a.z)-g.rotation.y),Math.cos(Math.atan2(other.x-a.x,other.z-a.z)-g.rotation.y)),-.72,.72):glance;
+    p.head.rotation.y+=(look-p.head.rotation.y)*(1-Math.exp(-dt*17));
+    p.head.rotation.x+=((drinking?.26*dip:idle?-.12*pulse(cycle,1.3,.9):0)-p.head.rotation.x)*blend;
+    p.head.rotation.z+=((idle?(warm?.23:-.16)*pulse(cycle,2.1,1.5):0)-p.head.rotation.z)*blend;
+    p.head.position.y=.20+(a.startled>0&&!moving?.018:0);
+    const blink=1-.94*pulse(clock%4.9,.3,.18);p.eyes.forEach(eye=>{eye.scale.y=blink;});
+    p.tail.rotation.x=-.23+(idle?.32*pulse(cycle,7.7,.5):.25*Math.sin(Math.PI*u))+.035*Math.sin(clock*3);
+    p.tail.rotation.y=idle?Math.sin(clock*19)*pulse(cycle,7.7,.5)*.12:0;
+    p.wings.forEach((wing,i)=>{const sign=i===0?-1:1;wing.rotation.z=sign*(.035+p.flight*(.85+Math.sin(clock*30)*.65)+(hop?.16:0)+ruffle*(.22+.06*Math.sin(clock*31)));wing.rotation.x=-.25*p.flight;});
+    p.feet.forEach((foot,i)=>{foot.rotation.x=moving?-.65*Math.sin(Math.PI*u):0;foot.position.y=idle?.018*Math.max(0,(i===0?1:-1)*shift):0;});
+  }else if(a.species==='snail'){
+    const hide=a.startled>0,reach=hide?.28:1,blendReach=1-Math.exp(-dt*(hide?18:3));
+    p.neck.scale.setScalar(p.neck.scale.x+(reach-p.neck.scale.x)*blendReach);
+    p.neck.rotation.y+=(clamp(turn,-.55,.55)-p.neck.rotation.y)*blend;
+    p.neck.rotation.x=(hide?0:Math.sin(t*1.1)*.08);
+    p.neck.position.z=.17+(hide?0:Math.sin(t*2.6)*.012);
+    p.body.scale.z=moving?1+Math.sin(t*5.2)*.045:1;p.shell.rotation.x=moving?Math.sin(t*5.2-1)*.025:0;
+    p.feelers.forEach((f,i)=>{f.rotation.x=Math.sin(t*1.6+i*2.4)*.19;f.rotation.z=Math.sin(t*.9+i*2.2)*.22;});
+  }else{
+    p.flight=(p.flight||0)+((moving?1:0)-(p.flight||0))*blend;
+    const open=1.18-.95*pulse((t+1.2)%5.8,.2,2.1),flap=.55+Math.sin(t*27+.4*Math.sin(t*3))*.85;
+    p.wings.forEach((wing,i)=>{wing.rotation.z=(i===0?1:-1)*(open*(1-p.flight)+flap*p.flight);});
+    g.rotation.z=clamp(-turn,-.3,.3)*p.flight+Math.sin(t*7)*.10*Math.sin(Math.PI*u);g.rotation.x=-.12*Math.sin(Math.PI*u);
+  }
 }
 
 export function createView(canvas,world){
@@ -181,35 +228,15 @@ export function createView(canvas,world){
   function update(w,ui,dt){
     const t=w.time;
     for(const o of w.objects){const g=objects.get(o.id);g.position.set(o.x,0,o.z);
-      if(o.type==='tree'){const tip=sprout({...o,x:0,z:0}).to;for(const n of g.userData.newLeaves){n.group.scale.copy(n.scale).multiplyScalar(Math.max(.005,o.growth));n.group.position.set(tip.x,tip.y,tip.z);}g.userData.twig.scale.setScalar(Math.max(.005,o.growth));}
+      if(o.type==='tree'){const tip=sprout({...o,x:0,z:0}).to;for(const n of g.userData.newLeaves){n.group.scale.copy(n.scale).multiplyScalar(Math.max(.005,o.growth));n.group.position.set(tip.x,tip.y,tip.z);}g.userData.twig.scale.setScalar(Math.max(.005,o.growth));g.userData.foliage.forEach((f,i)=>{f.rotation.x=Math.sin(t*.7+i+o.x)*.009;f.rotation.z=Math.sin(t*.9+i*.8+o.z)*.012;});}
       if(o.type==='water'){
         g.userData.water.visible=o.water>.02;g.userData.water.position.y=.065+o.water*.044;
-        const drinking=Object.values(w.residents).some(a=>a.action?.kind==='drink'&&a.action.phase==='doing');g.userData.ripple.visible=o.water>.02;g.userData.ripple.position.y=g.userData.water.position.y+.009;g.userData.ripple.scale.setScalar(drinking?.6+(t*.5%1):.93+Math.sin(t*.8)*.025);g.userData.ripple.material.opacity=drinking?.45:.24;g.userData.wet.material.opacity=o.wet*.35;
+        const drinking=Object.values(w.residents).find(a=>a.action?.kind==='drink'&&a.action.phase==='doing'),ripple=g.userData.ripple,d=drinking?Math.max(.001,Math.hypot(drinking.x-o.x,drinking.z-o.z)):1;
+        ripple.visible=o.water>.02&&!!drinking;ripple.position.set(drinking?(drinking.x-o.x)/d*.12:0,g.userData.water.position.y+.009,drinking?(drinking.z-o.z)/d*.12:0);ripple.scale.setScalar(drinking?.4+(drinking.action.phaseTime%1.8)/1.8*1.2:1);ripple.material.opacity=drinking?sip(drinking)*.55:0;g.userData.wet.material.opacity=o.wet*.35;
       }
       if('moisture'in o)g.traverse(n=>{if(n.userData.soil)n.material=material(o.moisture>.75?0x4f4c3d:0x5e5946);});
     }
-    for(const a of Object.values(w.residents)){
-      const g=residents.get(a.id),moving=a.action?.phase==='moving',landing=a.action?.phase==='landing';
-      g.position.set(a.x,a.y,a.z);const angle=Math.atan2(Math.sin(a.heading-g.rotation.y),Math.cos(a.heading-g.rotation.y));g.rotation.y+=angle*Math.min(1,dt*8);
-      if(a.species==='sparrow'){
-        const p=g.userData,drink=a.action?.kind==='drink'&&a.action.phase==='doing',hop=moving&&a.action.locomotion==='hop';
-        p.torso.rotation.x=drink?.35+Math.max(0,Math.sin(t*4))*.55:moving?-.15:Math.sin(t*1.6)*.018;
-        p.torso.position.y=.16+(moving?0:Math.sin(t*2.2)*.003)+(landing?Math.sin(a.action.phaseTime/.38*Math.PI)*-.035:0);
-        const other=a.action?.kind==='watch'?w.residents[a.action.targetId]:(a.seen||[]).map(id=>w.residents[id]).filter(Boolean).sort((b,c)=>Math.hypot(b.x-a.x,b.z-a.z)-Math.hypot(c.x-a.x,c.z-a.z))[0];
-        const look=!moving&&!drink&&other?clamp(Math.atan2(Math.sin(Math.atan2(other.x-a.x,other.z-a.z)-g.rotation.y),Math.cos(Math.atan2(other.x-a.x,other.z-a.z)-g.rotation.y)),-.65,.65):moving?0:Math.sin(t*.65+(a.id==='sparrow-a'?0:2))*.25;
-        p.head.rotation.y+=(look-p.head.rotation.y)*Math.min(1,dt*5);p.head.rotation.x=drink?.30:0;
-        p.wings.forEach((wing,i)=>{const sign=i===0?-1:1;wing.rotation.z=hop?sign*.16:moving?sign*(.9+Math.sin(t*28)*.85):sign*.035;wing.rotation.x=moving&&!hop?-.25:0;});
-        p.feet.forEach(f=>{f.rotation.x=moving?-.6:0;});
-        p.head.position.y=.20+(a.startled>0&&!moving?Math.sin(t*9)*.008:0);
-      }else if(a.species==='snail'){
-        const p=g.userData,hide=a.startled>0;p.body.scale.z=moving?1+Math.sin(t*7)*.06:1;
-        p.neck.scale.setScalar(hide?.35:1);p.shell.rotation.x=moving?Math.sin(t*7)*.02:0;p.feelers.forEach((f,i)=>{f.rotation.x=Math.sin(t*1.8+i)*.10;f.rotation.z=Math.sin(t*1.1+i)*.14;});
-      }else{
-        const angle=moving?.65+Math.sin(t*23)*.70:.75+Math.sin(t*1.5)*.12;
-        g.userData.wings.forEach((wing,i)=>{wing.rotation.z=(i===0?1:-1)*angle;});
-        if(moving)g.position.y+=Math.sin(t*5)*.018;
-      }
-    }
+    for(const a of Object.values(w.residents))animateResident(residents.get(a.id),a,w);
     const id=ui.selected||ui.hover,o=w.objects.find(o=>o.id===id);ring.visible=!!o;
     if(o){ring.position.set(o.x,.006,o.z);ring.scale.setScalar(o.radius+.14);ring.material.color.set(ui.invalid?0xba765b:0xb29b5c);}
     controls.update();renderer.render(scene,camera);

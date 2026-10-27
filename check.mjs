@@ -6,6 +6,7 @@ import {join} from 'node:path';
 import {createWorld,IDS,perception,validatePlan,installPlan,stepWorld,invalidateForEdit,moveObject,findPath,blocked,saveWorld,restoreWorld,targets,neighbors,dist,occupied,recordEvent} from './world.mjs';
 import {validateRequest,decisionInput,server} from './server.mjs';
 import {openBudget,costCny} from './budget.mjs';
+import {makeSparrow,makeSnail,makeButterfly,animateResident} from './art.mjs';
 const tick=(w,seconds)=>{for(let i=0;i<seconds*60;i++)stepWorld(w,1/60);};
 const w=createWorld(),request=perception(w,'sparrow-a');
 for(const id of IDS)assert.doesNotThrow(()=>validateRequest(perception(w,id)));
@@ -47,6 +48,11 @@ const blind=perception(observing,observer.id);blind.neighbors=[];assert.throws((
 installPlan(observing,observer.id,0,['rest:here']);tick(observing,1);const resting={...observer};invalidateForEdit(observing,'water');assert.equal(observer.action.source,'safety');assert.equal(dist(resting,observer),0,'moving a resting animal support must preserve position and trigger recovery');
 const pot=observing.objects.find(o=>o.id==='flowers');assert.equal(moveObject(observing,pot.id,pot.x,pot.z),false,'unchanged placement is not an edit');
 const routeRequest={...promptRequest,memory:[{type:'arrived',targetId:'water-near',at:1},{type:'arrived',targetId:'water-far',at:2},{type:'arrived',targetId:'water-near',at:3}]};assert.ok(decisionInput(routeRequest).messages[1].content.includes('water-near -> water-far -> water-near'),'the actual route must retain its chronological order and returns');
+const acting=createWorld(),models=new Map(IDS.map(id=>[id,id.startsWith('sparrow')?makeSparrow(id):id==='snail'?makeSnail():makeButterfly()]));
+const pose=g=>{const values=[];g.traverse(n=>values.push(...n.position.toArray(),n.rotation.x,n.rotation.y,n.rotation.z,...n.scale.toArray()));return values;};
+installPlan(acting,'sparrow-a',0,['drink:water-near']);installPlan(acting,'sparrow-b',0,['visit:water-wait']);installPlan(acting,'snail',0,['visit:water-edge']);installPlan(acting,'butterfly',0,['feed:flower-top']);
+for(let i=0;i<1200;i++){stepWorld(acting,1/60);const unchanged=JSON.stringify(acting);for(const [id,g] of models){animateResident(g,acting.residents[id],acting);assert.deepEqual(g.position.toArray(),[acting.residents[id].x,acting.residents[id].y,acting.residents[id].z],'acting must preserve the world anchor');if(i%60===0)assert.ok(pose(g).every(Number.isFinite));}assert.equal(JSON.stringify(acting),unchanged,'acting must not invent decisions or memories');}
+for(const [id,g] of models){const frozen=pose(g);for(let i=0;i<20;i++)animateResident(g,acting.residents[id],acting);assert.deepEqual(pose(g),frozen,'paused simulation must also freeze acting');}
 const directory=mkdtempSync(join(tmpdir(),'cohabitat-budget-'));
 try{const file=join(directory,'ledger.json'),money=openBudget(file,1);money.reserve('a',.4);assert.throws(()=>money.reserve('b',.7),/budget_exhausted/);assert.equal(openBudget(file,1).summary().reservedCny,.4);money.settle('a',.1);assert.equal(openBudget(file,1).summary().settledCny,.1);assert.throws(()=>money.reserve('c',NaN),/invalid_reservation/);assert.throws(()=>openBudget(file,101),/invalid_budget/);assert.equal(costCny(1e6,1e6,{input:.06,output:.24}),3);}finally{rmSync(directory,{recursive:true,force:true});}
 server.listen(0,'127.0.0.1');await once(server,'listening');

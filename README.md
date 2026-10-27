@@ -4,7 +4,7 @@ A small 3D balcony where you rearrange the environment and watch four residents 
 
 **Current build: local 3D prototype with real Ollama decisions. Nebius integration is implemented but not yet tested with a credential. This is not yet a completed hackathon submission.**
 
-![Actual browser capture](evidence/optimization-2/preview.png)
+![Actual browser capture](evidence/optimization-3/preview.png)
 
 ## Run
 
@@ -37,6 +37,8 @@ For the competition connection, set `AI_PROVIDER=nebius` and `NEBIUS_API_KEY` in
 
 The model selects up to three candidate IDs. It does not output geometry, run JavaScript, move the camera or directly write memories. Only actual arrivals, completed resource use or observation, and observed neighbor events enter the 12-event memory. A resident can choose to watch one visible neighbor for 12 seconds without changing its physical support. Losing sight ends that action without recording successful completion. Actions are rechecked against the current scene and target occupancy before execution. A moved support causes a mechanical safety transition even during rest or observation; it is recorded separately from a model decision.
 
+Local procedural acting gives those choices a visible rhythm: held glances, head tilts, blinks, tail flicks, a short feather ruffle, cushioned landings, sipping with water ripples, gradual snail withdrawal and butterfly wing stretching. The sparrows have different gesture phases. These are pose cycles, not new model decisions or evidence of emotion. World anchors, occupancy and memory stay unchanged, and pausing simulated time also freezes the poses.
+
 Perception uses distances and conservative canopy/pot/screen geometry. Tree foliage is decorative geometry within those shared canopy envelopes; this is an artistic simulation, not botanical or light-transport science. Growth is one small new branch/leaf cluster per tree; occupied main branches stay fixed. No promise of unlimited growth or biologically accurate behavior.
 
 Ollama is serialized to one local request; Nebius allows one in-flight request per resident. A session allows at most 12 calls/minute. Public-server global limits and the 100-CNY ceiling apply as well. Provider, model, action, request duration and execution outcome are recorded separately. Private logs and credentials are not served as static files.
@@ -53,7 +55,7 @@ Pause the residents and run `node verify-model.mjs` to replay two fixed observat
 
 The compact input supplies distances, grouped actual encounters and the last four remembered arrivals in chronological order. Satisfied animals cannot repeatedly consume; short, clear ground approaches use hops. Rest and observation are complete stationary actions. These are world rules, not evidence of model intelligence. A fixed butterfly case now rests with route history and revisits without it, but the two sparrow encounter comparisons remain inconsistent. **A learned relationship has not been established.** All prior negative comparisons are retained.
 
-See [the latest optimization measurements](evidence/optimization-2/VERIFICATION.md), [the previous optimization](evidence/optimization-1/VERIFICATION.md) and [the original ten-minute baseline](evidence/3d/VERIFICATION.md). Model response targets are p50 ≤3 seconds and p95 ≤5 seconds. Browser targets are approximately 60fps and software input feedback <100ms; these are measured separately from model latency. Local tests cannot establish production host performance or Nebius latency.
+See [the latest animation check](evidence/optimization-3/VERIFICATION.md), [the behavior and memory measurements](evidence/optimization-2/VERIFICATION.md), [the previous optimization](evidence/optimization-1/VERIFICATION.md) and [the original ten-minute baseline](evidence/3d/VERIFICATION.md). Model response targets are p50 ≤3 seconds and p95 ≤5 seconds. Browser targets are approximately 60fps and software input feedback <100ms; these are measured separately from model latency. Local tests cannot establish production host performance or Nebius latency.
 
 ## Deployment and license
 
