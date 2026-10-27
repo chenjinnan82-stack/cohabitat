@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+evidence/*.webm
+evidence/*.mp4
+evidence/*.jsonl
+.DS_Store
+node_modules/
+data/
+*.tar.gz
+archive/
+assets/
+release/
+*.webm
+*.mp4
+evidence/*
+!evidence/3d/

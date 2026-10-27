@@ -1,0 +1,15 @@
+{
+  "name": "cohabitat-balcony",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node check.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "three": "0.186.1"
+  }
+}

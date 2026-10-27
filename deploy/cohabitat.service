@@ -1,0 +1,29 @@
+[Unit]
+Description=Cohabitat balcony
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=cohabitat
+Group=cohabitat
+WorkingDirectory=/opt/cohabitat/current
+EnvironmentFile=/etc/cohabitat.env
+Environment=NODE_ENV=production
+Environment=DATA_DIR=/var/lib/cohabitat
+ExecStart=/usr/bin/node /opt/cohabitat/current/server.mjs
+Restart=on-failure
+RestartSec=5
+StateDirectory=cohabitat
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/cohabitat
+MemoryMax=192M
+CPUQuota=35%
+TasksMax=32
+
+[Install]
+WantedBy=multi-user.target

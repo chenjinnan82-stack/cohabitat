@@ -1,0 +1,29 @@
+1
+00:00:00,000 --> 00:00:07,000
+Cohabitat: real local Ollama development test.
+This recording does not use Nebius or Nemotron.
+
+2
+00:00:07,000 --> 00:00:18,000
+Moving the flower pot changes a real resource location.
+Watering and refilling change the residents' available actions.
+
+3
+00:00:20,000 --> 00:00:33,000
+Four residents choose short action sequences.
+Code handles movement, landing, occupancy and animation.
+
+4
+00:00:55,000 --> 00:01:10,000
+Rotate around the miniature scene.
+The camera does not change what residents perceive.
+
+5
+00:01:15,000 --> 00:01:30,000
+Residents record completed actions and observed encounters.
+They cannot read one another's private memories.
+
+6
+00:02:06,000 --> 00:02:21,000
+Local decision latency and memory effects still need improvement.
+The current memory comparison found no choice difference.

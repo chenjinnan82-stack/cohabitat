@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#dce5de">
+<title>共栖 · 小小阳台，各自生活</title><link rel="stylesheet" href="./style.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script>
+</head>
+<body>
+<main>
+  <header><a class="wordmark" href="./" aria-label="共栖首页">共栖<span>COHABIT</span></a><div class="header-actions"><span id="mode-label">小小阳台，各自生活</span><button id="pause" aria-label="暂停阳台" title="暂停">Ⅱ</button><button id="reset">重来</button></div></header>
+  <section class="stage" aria-label="三维阳台">
+    <canvas id="scene" tabindex="0" aria-label="三维阳台。拖空白处旋转，拖花盆、水盘或遮阴板移动；滚轮拉近。也可用下方控件选择物件并按方向键移动。"></canvas>
+    <div id="loading">阳台正在醒来…</div>
+    <span id="test-badge" hidden>动作测试 · 人工编排</span>
+    <div class="camera-tools" role="group" aria-label="调整视角"><button id="rotate-left" aria-label="向左旋转视角" title="向左转">↶</button><button id="rotate-right" aria-label="向右旋转视角" title="向右转">↷</button><button id="zoom-in" aria-label="拉近视角" title="拉近">＋</button><button id="zoom-out" aria-label="拉远视角" title="拉远">−</button><button id="camera-reset" aria-label="恢复初始视角" title="回到初始视角">⌂</button></div>
+    <div id="pause-label" hidden>已暂停</div>
+  </section>
+  <div class="toolbar"><div class="objects" role="group" aria-label="选择要移动的物件"><button data-object="ficus">小叶榕</button><button data-object="maple">鸡爪槭</button><button data-object="flowers">小花盆</button><button data-object="water">水盘</button><button data-object="shade">遮阴板</button></div><div class="tools"><button id="water" class="primary">加水</button><button id="shade">换一片阴凉</button></div></div>
+  <footer><span id="hint">拖空处转动 · 拖物件摆放 · 滚轮拉近</span><div><a id="mode-link" href="?mode=motion">动作测试</a><button id="record">录制</button><button id="export">记录</button></div></footer>
+  <div id="notice" role="status" hidden><span id="notice-text"></span><button id="retry">重试连接</button></div>
+  <span class="sr-only" id="announcement" aria-live="polite"></span>
+  <details id="diagnostics" hidden><summary>开发记录</summary><pre id="metrics"></pre><button id="three-minute">三分钟干预测试</button></details>
+</main>
+<dialog id="reset-dialog"><form method="dialog"><p>重新布置这个阳台？</p><p class="muted">当前布局和居民经历会被清除。</p><div><button value="cancel">保留</button><button class="primary" value="confirm">重新开始</button></div></form></dialog>
+<script type="module" src="./app.mjs"></script>
+</body></html>
