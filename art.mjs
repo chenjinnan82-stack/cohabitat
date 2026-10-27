@@ -192,13 +192,15 @@ export function createView(canvas,world){
       const g=residents.get(a.id),moving=a.action?.phase==='moving',landing=a.action?.phase==='landing';
       g.position.set(a.x,a.y,a.z);const angle=Math.atan2(Math.sin(a.heading-g.rotation.y),Math.cos(a.heading-g.rotation.y));g.rotation.y+=angle*Math.min(1,dt*8);
       if(a.species==='sparrow'){
-        const p=g.userData,drink=a.action?.kind==='drink'&&a.action.phase==='doing';
+        const p=g.userData,drink=a.action?.kind==='drink'&&a.action.phase==='doing',hop=moving&&a.action.locomotion==='hop';
         p.torso.rotation.x=drink?.35+Math.max(0,Math.sin(t*4))*.55:moving?-.15:Math.sin(t*1.6)*.018;
         p.torso.position.y=.16+(moving?0:Math.sin(t*2.2)*.003)+(landing?Math.sin(a.action.phaseTime/.38*Math.PI)*-.035:0);
-        p.head.rotation.y=moving?0:Math.sin(t*.65+(a.id==='sparrow-a'?0:2))*.25;p.head.rotation.x=drink?.30:0;
-        p.wings.forEach((wing,i)=>{const sign=i===0?-1:1;wing.rotation.z=moving?sign*(.9+Math.sin(t*28)*.85):sign*.035;wing.rotation.x=moving?-.25:0;});
+        const other=(a.seen||[]).map(id=>w.residents[id]).filter(Boolean).sort((b,c)=>Math.hypot(b.x-a.x,b.z-a.z)-Math.hypot(c.x-a.x,c.z-a.z))[0];
+        const look=!moving&&!drink&&other?clamp(Math.atan2(Math.sin(Math.atan2(other.x-a.x,other.z-a.z)-g.rotation.y),Math.cos(Math.atan2(other.x-a.x,other.z-a.z)-g.rotation.y)),-.65,.65):moving?0:Math.sin(t*.65+(a.id==='sparrow-a'?0:2))*.25;
+        p.head.rotation.y+=(look-p.head.rotation.y)*Math.min(1,dt*5);p.head.rotation.x=drink?.30:0;
+        p.wings.forEach((wing,i)=>{const sign=i===0?-1:1;wing.rotation.z=hop?sign*.16:moving?sign*(.9+Math.sin(t*28)*.85):sign*.035;wing.rotation.x=moving&&!hop?-.25:0;});
         p.feet.forEach(f=>{f.rotation.x=moving?-.6:0;});
-        if(a.startled>0&&!moving)p.head.position.y=.20+Math.sin(t*9)*.008;
+        p.head.position.y=.20+(a.startled>0&&!moving?Math.sin(t*9)*.008:0);
       }else if(a.species==='snail'){
         const p=g.userData,hide=a.startled>0;p.body.scale.z=moving?1+Math.sin(t*7)*.06:1;
         p.neck.scale.setScalar(hide?.35:1);p.shell.rotation.x=moving?Math.sin(t*7)*.02:0;p.feelers.forEach((f,i)=>{f.rotation.x=Math.sin(t*1.8+i)*.10;f.rotation.z=Math.sin(t*1.1+i)*.14;});

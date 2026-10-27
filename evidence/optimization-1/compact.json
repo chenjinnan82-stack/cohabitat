@@ -1,0 +1,920 @@
+{
+  "date": "2026-10-27T06:12:02.396Z",
+  "provider": "ollama",
+  "model": "qwen2.5:7b",
+  "cases": [
+    {
+      "name": "water-rim-encounter",
+      "sourceDecisionId": "f3af1792-d1d0-4d8f-b01a-e399fd2e8b15",
+      "request": {
+        "residentId": "sparrow-b",
+        "species": "sparrow",
+        "revision": 1,
+        "perception": {
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 0.38
+          },
+          "need": 0.62,
+          "needMeans": "thirst",
+          "preference": "Ash: cautious, watches before approaching, remembers who recently occupied a place, may share after calm encounters.",
+          "inShade": false
+        },
+        "neighbors": [
+          {
+            "residentId": "sparrow-a",
+            "species": "sparrow",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 1.1800000000000002
+            },
+            "activity": "drink",
+            "distance": 0.8
+          },
+          {
+            "residentId": "snail",
+            "species": "snail",
+            "position": {
+              "x": -1.07,
+              "y": 0,
+              "z": 0.88
+            },
+            "activity": "rest",
+            "distance": 0.83
+          }
+        ],
+        "memory": [
+          {
+            "id": 2,
+            "at": 0.3,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": 2.35,
+              "y": 0.78,
+              "z": -1.96
+            }
+          },
+          {
+            "id": 13,
+            "at": 11.1,
+            "type": "neighbor_left",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": 1.6733124933153873,
+              "y": 1.7161672783295696,
+              "z": -1.3883578463386304
+            }
+          },
+          {
+            "id": 15,
+            "at": 11.4,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "sparrow-a",
+            "position": {
+              "x": 1.2551398059603862,
+              "y": 2.0167516271405916,
+              "z": -1.0351000526885572
+            }
+          },
+          {
+            "id": 16,
+            "at": 11.4,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": 1.2551398059603862,
+              "y": 2.0167516271405916,
+              "z": -1.0351000526885572
+            }
+          },
+          {
+            "id": 18,
+            "at": 12,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "snail",
+            "position": {
+              "x": 0.39976183531529697,
+              "y": 1.5947357854071202,
+              "z": -0.3125063879558827
+            }
+          },
+          {
+            "id": 20,
+            "at": 13.5,
+            "type": "arrived",
+            "residentId": "sparrow-b",
+            "targetId": "water-far",
+            "source": "model",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            }
+          },
+          {
+            "id": 27,
+            "at": 16.3,
+            "type": "shared_space",
+            "residentId": "sparrow-b",
+            "targetId": "water-far",
+            "otherId": "sparrow-a",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            }
+          },
+          {
+            "id": 35,
+            "at": 21.8,
+            "type": "neighbor_left",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            }
+          },
+          {
+            "id": 38,
+            "at": 22.7,
+            "type": "shared_space",
+            "residentId": "sparrow-b",
+            "targetId": "water-far",
+            "otherId": "snail",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            }
+          }
+        ],
+        "candidates": [
+          {
+            "id": "visit:rail-left",
+            "kind": "visit",
+            "targetId": "rail-left",
+            "description": "Move to rail-left and look around",
+            "position": {
+              "x": -2.35,
+              "y": 0.78,
+              "z": -1.96
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "visit:rail-right",
+            "kind": "visit",
+            "targetId": "rail-right",
+            "description": "Move to rail-right and look around",
+            "position": {
+              "x": 2.35,
+              "y": 0.78,
+              "z": -1.96
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "drink:water-far",
+            "kind": "drink",
+            "targetId": "water-far",
+            "description": "Drink at the bowl; another bird may use the other rim",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            },
+            "shade": false,
+            "damp": true
+          },
+          {
+            "id": "visit:water-wait",
+            "kind": "visit",
+            "targetId": "water-wait",
+            "description": "Move to water-wait and look around",
+            "position": {
+              "x": 0.31,
+              "y": 0,
+              "z": 0.97
+            },
+            "shade": false,
+            "damp": true
+          },
+          {
+            "id": "wait:water-wait",
+            "kind": "wait",
+            "targetId": "water-wait",
+            "description": "Wait near the water and watch its users",
+            "position": {
+              "x": 0.31,
+              "y": 0,
+              "z": 0.97
+            },
+            "shade": false,
+            "damp": true
+          },
+          {
+            "id": "visit:ficus-branch",
+            "kind": "visit",
+            "targetId": "ficus-branch",
+            "description": "Move to ficus-branch and look around",
+            "position": {
+              "x": -0.97,
+              "y": 1.1,
+              "z": -0.52
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "visit:maple-branch",
+            "kind": "visit",
+            "targetId": "maple-branch",
+            "description": "Move to maple-branch and look around",
+            "position": {
+              "x": 0.98,
+              "y": 1.05,
+              "z": -0.4
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "rest:here",
+            "kind": "rest",
+            "targetId": "here",
+            "description": "Stay in place and observe briefly",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            },
+            "shade": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "water-waiting-encounter",
+      "sourceDecisionId": "6f0b2c1c-d0d2-4ac1-83af-602a6cb89363",
+      "request": {
+        "residentId": "sparrow-b",
+        "species": "sparrow",
+        "revision": 2,
+        "perception": {
+          "position": {
+            "x": 0.31,
+            "y": 0,
+            "z": 0.97
+          },
+          "need": 0.7,
+          "needMeans": "thirst",
+          "preference": "Ash: cautious, watches before approaching, remembers who recently occupied a place, may share after calm encounters.",
+          "inShade": false
+        },
+        "neighbors": [
+          {
+            "residentId": "sparrow-a",
+            "species": "sparrow",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 1.1800000000000002
+            },
+            "activity": "drink",
+            "distance": 0.77
+          },
+          {
+            "residentId": "snail",
+            "species": "snail",
+            "position": {
+              "x": -1.07,
+              "y": 0,
+              "z": 0.88
+            },
+            "activity": "visit",
+            "distance": 1.38
+          },
+          {
+            "residentId": "butterfly",
+            "species": "butterfly",
+            "position": {
+              "x": 1.12,
+              "y": 0.63,
+              "z": 1.1
+            },
+            "activity": "feed",
+            "distance": 1.03
+          }
+        ],
+        "memory": [
+          {
+            "id": 2,
+            "at": 0.3,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": 2.35,
+              "y": 0.78,
+              "z": -1.96
+            }
+          },
+          {
+            "id": 13,
+            "at": 11.1,
+            "type": "neighbor_left",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": 1.6733124933153873,
+              "y": 1.7161672783295696,
+              "z": -1.3883578463386304
+            }
+          },
+          {
+            "id": 15,
+            "at": 11.4,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "sparrow-a",
+            "position": {
+              "x": 1.2551398059603862,
+              "y": 2.0167516271405916,
+              "z": -1.0351000526885572
+            }
+          },
+          {
+            "id": 16,
+            "at": 11.4,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": 1.2551398059603862,
+              "y": 2.0167516271405916,
+              "z": -1.0351000526885572
+            }
+          },
+          {
+            "id": 18,
+            "at": 12,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "snail",
+            "position": {
+              "x": 0.39976183531529697,
+              "y": 1.5947357854071202,
+              "z": -0.3125063879558827
+            }
+          },
+          {
+            "id": 20,
+            "at": 13.5,
+            "type": "arrived",
+            "residentId": "sparrow-b",
+            "targetId": "water-far",
+            "source": "model",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            }
+          },
+          {
+            "id": 27,
+            "at": 16.3,
+            "type": "shared_space",
+            "residentId": "sparrow-b",
+            "targetId": "water-far",
+            "otherId": "sparrow-a",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            }
+          },
+          {
+            "id": 35,
+            "at": 21.8,
+            "type": "neighbor_left",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            }
+          },
+          {
+            "id": 38,
+            "at": 22.7,
+            "type": "shared_space",
+            "residentId": "sparrow-b",
+            "targetId": "water-far",
+            "otherId": "snail",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            }
+          },
+          {
+            "id": 50,
+            "at": 34.2,
+            "type": "arrived",
+            "residentId": "sparrow-b",
+            "targetId": "water-wait",
+            "source": "model",
+            "position": {
+              "x": 0.31,
+              "y": 0,
+              "z": 0.97
+            }
+          },
+          {
+            "id": 52,
+            "at": 36.9,
+            "type": "shared_space",
+            "residentId": "sparrow-b",
+            "targetId": "water-wait",
+            "otherId": "sparrow-a",
+            "position": {
+              "x": 0.31,
+              "y": 0,
+              "z": 0.97
+            }
+          },
+          {
+            "id": 59,
+            "at": 43.4,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": 0.31,
+              "y": 0,
+              "z": 0.97
+            }
+          }
+        ],
+        "candidates": [
+          {
+            "id": "visit:rail-left",
+            "kind": "visit",
+            "targetId": "rail-left",
+            "description": "Move to rail-left and look around",
+            "position": {
+              "x": -2.35,
+              "y": 0.78,
+              "z": -1.96
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "visit:rail-right",
+            "kind": "visit",
+            "targetId": "rail-right",
+            "description": "Move to rail-right and look around",
+            "position": {
+              "x": 2.35,
+              "y": 0.78,
+              "z": -1.96
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "visit:water-far",
+            "kind": "visit",
+            "targetId": "water-far",
+            "description": "Move to water-far and look around",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            },
+            "shade": false,
+            "damp": true
+          },
+          {
+            "id": "drink:water-far",
+            "kind": "drink",
+            "targetId": "water-far",
+            "description": "Drink at the bowl; another bird may use the other rim",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            },
+            "shade": false,
+            "damp": true
+          },
+          {
+            "id": "wait:water-wait",
+            "kind": "wait",
+            "targetId": "water-wait",
+            "description": "Wait near the water and watch its users",
+            "position": {
+              "x": 0.31,
+              "y": 0,
+              "z": 0.97
+            },
+            "shade": false,
+            "damp": true
+          },
+          {
+            "id": "visit:ficus-branch",
+            "kind": "visit",
+            "targetId": "ficus-branch",
+            "description": "Move to ficus-branch and look around",
+            "position": {
+              "x": -0.97,
+              "y": 1.1,
+              "z": -0.52
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "visit:maple-branch",
+            "kind": "visit",
+            "targetId": "maple-branch",
+            "description": "Move to maple-branch and look around",
+            "position": {
+              "x": 0.98,
+              "y": 1.05,
+              "z": -0.4
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "rest:here",
+            "kind": "rest",
+            "targetId": "here",
+            "description": "Stay in place and observe briefly",
+            "position": {
+              "x": 0.31,
+              "y": 0,
+              "z": 0.97
+            },
+            "shade": false
+          }
+        ]
+      }
+    }
+  ],
+  "method": "Two fixed observations from real play. Three repeats each: actual history; empty history; empty history with neighbors hidden. Candidate actions stay identical. Order rotates. Plans are not executed or remembered. Cached replay timings are not live latency.",
+  "results": [
+    {
+      "case": "water-rim-encounter",
+      "round": 0,
+      "condition": "actual",
+      "actions": [
+        "drink:water-far"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 2488,
+      "usage": {
+        "prompt_tokens": 365,
+        "completion_tokens": 10,
+        "loadMs": 2,
+        "evalMs": 441,
+        "promptMs": 1997
+      }
+    },
+    {
+      "case": "water-rim-encounter",
+      "round": 0,
+      "condition": "empty-memory",
+      "actions": [
+        "visit:rail-left"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 1176,
+      "usage": {
+        "prompt_tokens": 318,
+        "completion_tokens": 9,
+        "loadMs": 2,
+        "evalMs": 396,
+        "promptMs": 758
+      }
+    },
+    {
+      "case": "water-rim-encounter",
+      "round": 0,
+      "condition": "unobserved-neighbors",
+      "actions": [
+        "visit:water-wait"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 1065,
+      "usage": {
+        "prompt_tokens": 252,
+        "completion_tokens": 10,
+        "loadMs": 3,
+        "evalMs": 441,
+        "promptMs": 611
+      }
+    },
+    {
+      "case": "water-waiting-encounter",
+      "round": 0,
+      "condition": "actual",
+      "actions": [
+        "visit:rail-left"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 1770,
+      "usage": {
+        "prompt_tokens": 391,
+        "completion_tokens": 9,
+        "loadMs": 3,
+        "evalMs": 385,
+        "promptMs": 1368
+      }
+    },
+    {
+      "case": "water-waiting-encounter",
+      "round": 0,
+      "condition": "empty-memory",
+      "actions": [
+        "visit:rail-left"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 1177,
+      "usage": {
+        "prompt_tokens": 339,
+        "completion_tokens": 9,
+        "loadMs": 2,
+        "evalMs": 402,
+        "promptMs": 761
+      }
+    },
+    {
+      "case": "water-waiting-encounter",
+      "round": 0,
+      "condition": "unobserved-neighbors",
+      "actions": [
+        "visit:water-far"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 1058,
+      "usage": {
+        "prompt_tokens": 251,
+        "completion_tokens": 10,
+        "loadMs": 2,
+        "evalMs": 443,
+        "promptMs": 602
+      }
+    },
+    {
+      "case": "water-rim-encounter",
+      "round": 1,
+      "condition": "empty-memory",
+      "actions": [
+        "visit:rail-left"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 456,
+      "usage": {
+        "prompt_tokens": 318,
+        "completion_tokens": 9,
+        "loadMs": 3,
+        "evalMs": 391,
+        "promptMs": 49
+      }
+    },
+    {
+      "case": "water-rim-encounter",
+      "round": 1,
+      "condition": "unobserved-neighbors",
+      "actions": [
+        "visit:water-wait"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 502,
+      "usage": {
+        "prompt_tokens": 252,
+        "completion_tokens": 10,
+        "loadMs": 2,
+        "evalMs": 433,
+        "promptMs": 51
+      }
+    },
+    {
+      "case": "water-rim-encounter",
+      "round": 1,
+      "condition": "actual",
+      "actions": [
+        "drink:water-far"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 1500,
+      "usage": {
+        "prompt_tokens": 365,
+        "completion_tokens": 10,
+        "loadMs": 2,
+        "evalMs": 433,
+        "promptMs": 1056
+      }
+    },
+    {
+      "case": "water-waiting-encounter",
+      "round": 1,
+      "condition": "empty-memory",
+      "actions": [
+        "visit:rail-left"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 453,
+      "usage": {
+        "prompt_tokens": 339,
+        "completion_tokens": 9,
+        "loadMs": 2,
+        "evalMs": 391,
+        "promptMs": 47
+      }
+    },
+    {
+      "case": "water-waiting-encounter",
+      "round": 1,
+      "condition": "unobserved-neighbors",
+      "actions": [
+        "visit:water-far"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 519,
+      "usage": {
+        "prompt_tokens": 251,
+        "completion_tokens": 10,
+        "loadMs": 1,
+        "evalMs": 455,
+        "promptMs": 50
+      }
+    },
+    {
+      "case": "water-waiting-encounter",
+      "round": 1,
+      "condition": "actual",
+      "actions": [
+        "visit:rail-left"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 1607,
+      "usage": {
+        "prompt_tokens": 391,
+        "completion_tokens": 9,
+        "loadMs": 3,
+        "evalMs": 398,
+        "promptMs": 1198
+      }
+    },
+    {
+      "case": "water-rim-encounter",
+      "round": 2,
+      "condition": "unobserved-neighbors",
+      "actions": [
+        "visit:water-wait"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 1206,
+      "usage": {
+        "prompt_tokens": 252,
+        "completion_tokens": 10,
+        "loadMs": 2,
+        "evalMs": 450,
+        "promptMs": 724
+      }
+    },
+    {
+      "case": "water-rim-encounter",
+      "round": 2,
+      "condition": "actual",
+      "actions": [
+        "drink:water-far"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 1607,
+      "usage": {
+        "prompt_tokens": 365,
+        "completion_tokens": 10,
+        "loadMs": 2,
+        "evalMs": 460,
+        "promptMs": 1133
+      }
+    },
+    {
+      "case": "water-rim-encounter",
+      "round": 2,
+      "condition": "empty-memory",
+      "actions": [
+        "visit:rail-left"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 469,
+      "usage": {
+        "prompt_tokens": 318,
+        "completion_tokens": 9,
+        "loadMs": 2,
+        "evalMs": 407,
+        "promptMs": 49
+      }
+    },
+    {
+      "case": "water-waiting-encounter",
+      "round": 2,
+      "condition": "unobserved-neighbors",
+      "actions": [
+        "visit:water-far"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 1139,
+      "usage": {
+        "prompt_tokens": 251,
+        "completion_tokens": 10,
+        "loadMs": 2,
+        "evalMs": 474,
+        "promptMs": 642
+      }
+    },
+    {
+      "case": "water-waiting-encounter",
+      "round": 2,
+      "condition": "actual",
+      "actions": [
+        "visit:water-far"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 1702,
+      "usage": {
+        "prompt_tokens": 391,
+        "completion_tokens": 10,
+        "loadMs": 2,
+        "evalMs": 448,
+        "promptMs": 1244
+      }
+    },
+    {
+      "case": "water-waiting-encounter",
+      "round": 2,
+      "condition": "empty-memory",
+      "actions": [
+        "visit:rail-left"
+      ],
+      "source": "ollama",
+      "model": "qwen2.5:7b",
+      "durationMs": 464,
+      "usage": {
+        "prompt_tokens": 339,
+        "completion_tokens": 9,
+        "loadMs": 2,
+        "evalMs": 400,
+        "promptMs": 50
+      }
+    }
+  ]
+}

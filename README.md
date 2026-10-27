@@ -4,7 +4,7 @@ A small 3D balcony where you rearrange the environment and watch four residents 
 
 **Current build: local 3D prototype with real Ollama decisions. Nebius integration is implemented but not yet tested with a credential. This is not yet a completed hackathon submission.**
 
-![Actual browser capture](evidence/3d/preview.png)
+![Actual browser capture](evidence/optimization-1/preview.png)
 
 ## Run
 
@@ -49,9 +49,11 @@ npm test
 
 One executable assertion check covers 3D targets, occupancy, illegal/stale actions, continuous safety transitions, actual shared-space memories, isolation of private resident memories, snail paths, v2 persistence, budget restart behavior and HTTP boundaries. It does not make inference calls.
 
-After a real session, pause the residents and run `node verify-model.mjs` to replay one recorded observation with and without actual memory. This makes six real calls through the selected provider. The current comparison found no choice difference.
+Pause the residents and run `node verify-model.mjs` to replay two fixed observations from real play. This makes 18 real calls through the selected provider: three repetitions with actual memory, empty memory, and empty memory plus unobserved neighbors. Candidates stay identical; none of these plans are executed or remembered. Optional arguments select the case file and output file. Repeated-input timings benefit from inference caching and are not live latency.
 
-See [the actual 3D measurements](evidence/3d/VERIFICATION.md). Model response targets are p50 ≤3 seconds and p95 ≤5 seconds. Browser targets are approximately 60fps and software input feedback <100ms; these are measured separately from model latency. Local tests cannot establish production host performance or Nebius latency.
+The compact input supplies distances and grouped actual encounters instead of redundant coordinate JSON. Satisfied animals cannot repeatedly consume; short, clear ground approaches use hops, and safety landings no longer add an idle five-second hold. These are world/animation rules, not evidence of model intelligence. The final prompt's two fixed comparisons still found **no reliable effect of memory on the selected action**. An intermediate prompt showed a difference but also let an urgent snail wander without shelter; that is not accepted as a successful relationship mechanism.
+
+See [the latest optimization measurements](evidence/optimization-1/VERIFICATION.md) and [the original ten-minute baseline](evidence/3d/VERIFICATION.md). Model response targets are p50 ≤3 seconds and p95 ≤5 seconds. Browser targets are approximately 60fps and software input feedback <100ms; these are measured separately from model latency. Local tests cannot establish production host performance or Nebius latency.
 
 ## Deployment and license
 

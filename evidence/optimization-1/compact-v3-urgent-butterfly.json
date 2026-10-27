@@ -1,0 +1,331 @@
+{
+  "sourceDecision": "04a1dd4e-6f91-473b-9ba5-9a132c390840",
+  "before": [
+    "visit:flower-top"
+  ],
+  "request": {
+    "residentId": "butterfly",
+    "species": "butterfly",
+    "revision": 7,
+    "perception": {
+      "position": {
+        "x": 2.12,
+        "y": 0.08,
+        "z": 1.38
+      },
+      "simTime": 596.2,
+      "need": 0.98,
+      "needMeans": "need for nectar",
+      "preference": "Explores flowers and sunny resting places, gives birds space, returns to a place after a calm visit.",
+      "inShade": false
+    },
+    "neighbors": [
+      {
+        "residentId": "sparrow-a",
+        "species": "sparrow",
+        "position": {
+          "x": -0.3037373166442184,
+          "y": 0.15,
+          "z": 0.7799999999999999
+        },
+        "activity": "visit",
+        "distance": 2.5
+      },
+      {
+        "residentId": "sparrow-b",
+        "species": "sparrow",
+        "position": {
+          "x": 0.4262626833557816,
+          "y": 0,
+          "z": 1.3699999999999999
+        },
+        "activity": "visit",
+        "distance": 1.7
+      }
+    ],
+    "memory": [
+      {
+        "id": 556,
+        "at": 400.9,
+        "type": "arrived",
+        "residentId": "butterfly",
+        "targetId": "flower-top",
+        "source": "model",
+        "position": {
+          "x": 1.5978966319211991,
+          "y": 0.63,
+          "z": 1.3699999999999999
+        }
+      },
+      {
+        "id": 580,
+        "at": 413.3,
+        "type": "arrived",
+        "residentId": "butterfly",
+        "targetId": "sun-rest",
+        "source": "model",
+        "position": {
+          "x": 2.12,
+          "y": 0.08,
+          "z": 1.38
+        }
+      },
+      {
+        "id": 598,
+        "at": 421.9,
+        "type": "arrived",
+        "residentId": "butterfly",
+        "targetId": "flower-top",
+        "source": "model",
+        "position": {
+          "x": 1.5978966319211991,
+          "y": 0.63,
+          "z": 1.3699999999999999
+        }
+      },
+      {
+        "id": 631,
+        "at": 471.7,
+        "type": "arrived",
+        "residentId": "butterfly",
+        "targetId": "sun-rest",
+        "source": "model",
+        "position": {
+          "x": 2.12,
+          "y": 0.08,
+          "z": 1.38
+        }
+      },
+      {
+        "id": 647,
+        "at": 480.4,
+        "type": "arrived",
+        "residentId": "butterfly",
+        "targetId": "flower-top",
+        "source": "model",
+        "position": {
+          "x": 1.5978966319211991,
+          "y": 0.63,
+          "z": 1.3699999999999999
+        }
+      },
+      {
+        "id": 672,
+        "at": 518.6,
+        "type": "arrived",
+        "residentId": "butterfly",
+        "targetId": "sun-rest",
+        "source": "model",
+        "position": {
+          "x": 2.12,
+          "y": 0.08,
+          "z": 1.38
+        }
+      },
+      {
+        "id": 694,
+        "at": 529.9,
+        "type": "arrived",
+        "residentId": "butterfly",
+        "targetId": "flower-top",
+        "source": "model",
+        "position": {
+          "x": 1.5978966319211991,
+          "y": 0.63,
+          "z": 1.3699999999999999
+        }
+      },
+      {
+        "id": 717,
+        "at": 540.5,
+        "type": "arrived",
+        "residentId": "butterfly",
+        "targetId": "sun-rest",
+        "source": "model",
+        "position": {
+          "x": 2.12,
+          "y": 0.08,
+          "z": 1.38
+        }
+      },
+      {
+        "id": 736,
+        "at": 578.5,
+        "type": "neighbor_arrived",
+        "residentId": "butterfly",
+        "targetId": "nearby",
+        "otherId": "snail",
+        "position": {
+          "x": 1.5978966319211991,
+          "y": 0.63,
+          "z": 1.3699999999999999
+        }
+      },
+      {
+        "id": 737,
+        "at": 578.8,
+        "type": "arrived",
+        "residentId": "butterfly",
+        "targetId": "flower-top",
+        "source": "model",
+        "position": {
+          "x": 1.5978966319211991,
+          "y": 0.63,
+          "z": 1.3699999999999999
+        }
+      },
+      {
+        "id": 757,
+        "at": 589.2,
+        "type": "neighbor_left",
+        "residentId": "butterfly",
+        "targetId": "nearby",
+        "otherId": "snail",
+        "position": {
+          "x": 1.70870395201975,
+          "y": 0.7297239544826033,
+          "z": 1.3721223253262336
+        }
+      },
+      {
+        "id": 758,
+        "at": 590.2,
+        "type": "arrived",
+        "residentId": "butterfly",
+        "targetId": "sun-rest",
+        "source": "model",
+        "position": {
+          "x": 2.12,
+          "y": 0.08,
+          "z": 1.38
+        }
+      }
+    ],
+    "candidates": [
+      {
+        "id": "visit:flower-top",
+        "kind": "visit",
+        "targetId": "flower-top",
+        "description": "Move to flower-top and look around",
+        "position": {
+          "x": 1.5978966319211991,
+          "y": 0.63,
+          "z": 1.3699999999999999
+        },
+        "shade": false,
+        "damp": false
+      },
+      {
+        "id": "feed:flower-top",
+        "kind": "feed",
+        "targetId": "flower-top",
+        "description": "Visit the flowers for nectar",
+        "position": {
+          "x": 1.5978966319211991,
+          "y": 0.63,
+          "z": 1.3699999999999999
+        },
+        "shade": false,
+        "damp": false
+      },
+      {
+        "id": "visit:ficus-tip",
+        "kind": "visit",
+        "targetId": "ficus-tip",
+        "description": "Move to ficus-tip and look around",
+        "position": {
+          "x": -1.3,
+          "y": 2.02,
+          "z": -0.67
+        },
+        "shade": false,
+        "damp": false
+      },
+      {
+        "id": "visit:maple-tip",
+        "kind": "visit",
+        "targetId": "maple-tip",
+        "description": "Move to maple-tip and look around",
+        "position": {
+          "x": 1.93,
+          "y": 2.02,
+          "z": -0.8
+        },
+        "shade": false,
+        "damp": false
+      },
+      {
+        "id": "rest:here",
+        "kind": "rest",
+        "targetId": "here",
+        "description": "Stay in place and observe briefly",
+        "position": {
+          "x": 2.12,
+          "y": 0.08,
+          "z": 1.38
+        },
+        "shade": false
+      }
+    ]
+  },
+  "results": [
+    {
+      "id": "df98b799-142d-4d6d-8e6e-016e54098c69",
+      "residentId": "butterfly",
+      "revision": 7,
+      "actions": [
+        "visit:flower-top"
+      ],
+      "source": "ollama",
+      "requestedModel": "qwen2.5:7b",
+      "servedModel": "qwen2.5:7b",
+      "durationMs": 1501,
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 9,
+        "loadMs": 1,
+        "evalMs": 391,
+        "promptMs": 1097
+      }
+    },
+    {
+      "id": "f7016bce-8279-4fe8-a848-d3507722ed81",
+      "residentId": "butterfly",
+      "revision": 7,
+      "actions": [
+        "visit:flower-top"
+      ],
+      "source": "ollama",
+      "requestedModel": "qwen2.5:7b",
+      "servedModel": "qwen2.5:7b",
+      "durationMs": 448,
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 9,
+        "loadMs": 2,
+        "evalMs": 388,
+        "promptMs": 46
+      }
+    },
+    {
+      "id": "7ebe19ae-a362-4c78-ba20-05873b321f52",
+      "residentId": "butterfly",
+      "revision": 7,
+      "actions": [
+        "visit:flower-top"
+      ],
+      "source": "ollama",
+      "requestedModel": "qwen2.5:7b",
+      "servedModel": "qwen2.5:7b",
+      "durationMs": 444,
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 9,
+        "loadMs": 2,
+        "evalMs": 386,
+        "promptMs": 47
+      }
+    }
+  ],
+  "method": "Recorded urgent butterfly that selected visit despite available food. Same observation, three actual calls with final descriptions, no plans executed. One original sample, not statistical proof."
+}

@@ -32,7 +32,7 @@ export function recordEvent(w,type,residentId,targetId,extra={}){
   const e={id:++w.eventId,at:Math.round(w.time*10)/10,type,residentId,targetId,...extra};
   w.events.push(e);if(w.events.length>400)w.events.shift();
   const a=w.residents[residentId];
-  if(a&&MEMORY_TYPES.includes(type)){a.memory.push({...e,position:point(a)});a.memory=a.memory.slice(-12);}
+  if(a&&MEMORY_TYPES.includes(type)){if(['neighbor_arrived','neighbor_left'].includes(type))a.memory=a.memory.filter(m=>!(m.type===type&&m.otherId===extra.otherId));a.memory.push({...e,position:point(a)});a.memory=a.memory.slice(-12);}
   return e;
 }
 
@@ -142,10 +142,10 @@ export function candidates(w,id){
     if(a.species==='snail'&&(groundDist(a,t)>2.5||findPath(w,a,t)===null))continue;
     const push=(kind,description)=>options.push({id:kind+':'+t.id,kind,targetId:t.id,description,position:point(t),shade:t.shade,damp:!!t.damp});
     if(dist(a,t)>.12)push('visit','Move to '+t.id+' and look around');
-    if(t.kind==='water'&&t.water>.02)push('drink','Drink at the bowl; another bird may use the other rim');
+    if(t.kind==='water'&&t.water>.02&&a.need>=.2)push('drink','Drink at the bowl; another bird may use the other rim');
     if(t.kind==='waiting')push('wait','Wait near the water and watch its users');
-    if(t.kind==='flower')push('feed','Visit the flowers for nectar');
-    if(a.species==='snail'&&(t.shade||t.damp))push('shelter','Settle in this sheltered or damp place');
+    if(t.kind==='flower'&&a.need>=.2)push('feed','Visit the flowers for nectar');
+    if(a.species==='snail'&&a.need>=.2&&(t.shade||t.damp))push('shelter','Settle in this sheltered or damp place');
   }
   options.push({id:'rest:here',kind:'rest',targetId:'here',description:'Stay in place and observe briefly',position:point(a),shade:inShade(w,a)});
   return options;
@@ -156,7 +156,7 @@ export function neighbors(w,id){
 }
 export function perception(w,id){
   const a=w.residents[id];return {residentId:id,species:a.species,revision:w.revision,
-    perception:{position:point(a),need:Math.round(a.need*100)/100,needMeans:a.species==='sparrow'?'thirst':a.species==='snail'?'need for moist shelter':'need for nectar',preference:a.preference,inShade:inShade(w,a)},
+    perception:{position:point(a),simTime:Math.round(w.time*10)/10,need:Math.round(a.need*100)/100,needMeans:a.species==='sparrow'?'thirst':a.species==='snail'?'need for moist shelter':'need for nectar',preference:a.preference,inShade:inShade(w,a)},
     neighbors:neighbors(w,id),memory:copy(a.memory),candidates:candidates(w,id)};
 }
 export function validatePlan(request,plan){
@@ -181,7 +181,8 @@ function begin(w,a,item){
   const goal=item.position,path=a.species==='snail'?findPath(w,a,goal):null;
   if(a.species==='snail'&&path===null){recordEvent(w,'blocked',a.id,item.targetId);return;}
   if(dist(a,goal)<.03&&item.targetId!=='here')a.support=item.targetId;
-  a.action={...item,goal:point(goal),from:point(a),path,pathIndex:0,elapsed:0,phaseTime:0,phase:dist(a,goal)<.03?'doing':'moving',travel:Math.max(.8,dist(a,goal)/(a.species==='butterfly'?.85:1.25)),apex:flightHeight(w,a,goal),duration:item.kind==='wait'?7:item.kind==='shelter'?9:item.kind==='rest'?6:5};
+  const hop=a.species==='sparrow'&&a.y<=.18&&goal.y<=.18&&dist(a,goal)<.98&&!lineBlocked(w,{...a,y:a.y+.24},{...goal,y:goal.y+.24});
+  a.action={...item,locomotion:hop?'hop':'flight',goal:point(goal),from:point(a),path,pathIndex:0,elapsed:0,phaseTime:0,phase:dist(a,goal)<.03?'doing':'moving',travel:Math.max(hop?.44:.8,dist(a,goal)/(hop?1.75:a.species==='butterfly'?.85:1.25)),apex:hop?Math.max(a.y,goal.y)+.14:flightHeight(w,a,goal),duration:item.kind==='recovery'?0:item.kind==='wait'?7:item.kind==='shelter'?9:item.kind==='rest'?6:5};
   if(a.action.phase==='moving')a.support=null;
 }
 function startNext(w,a){

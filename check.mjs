@@ -3,8 +3,8 @@ import {once} from 'node:events';
 import {mkdtempSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {createWorld,IDS,perception,validatePlan,installPlan,stepWorld,invalidateForEdit,moveObject,findPath,blocked,saveWorld,restoreWorld,targets,neighbors,dist,occupied} from './world.mjs';
-import {validateRequest,server} from './server.mjs';
+import {createWorld,IDS,perception,validatePlan,installPlan,stepWorld,invalidateForEdit,moveObject,findPath,blocked,saveWorld,restoreWorld,targets,neighbors,dist,occupied,recordEvent} from './world.mjs';
+import {validateRequest,decisionInput,server} from './server.mjs';
 import {openBudget,costCny} from './budget.mjs';
 const tick=(w,seconds)=>{for(let i=0;i<seconds*60;i++)stepWorld(w,1/60);};
 const w=createWorld(),request=perception(w,'sparrow-a');
@@ -20,7 +20,7 @@ assert.equal(installPlan(w,'sparrow-a',1,['drink:water-near']).reason,'stale_rev
 assert.equal(installPlan(w,'sparrow-a',0,['drink:water-near']).ok,true);
 assert.equal(w.residents['sparrow-a'].memory.length,0,'plans are not outcomes');
 tick(w,.4);const bird=w.residents['sparrow-a'],before={...bird};
-invalidateForEdit(w,'water');assert.equal(bird.action.source,'safety');assert.equal(dist(before,bird),0,'edit preserves current world position');
+invalidateForEdit(w,'water');assert.equal(bird.action.source,'safety');assert.equal(bird.action.duration,0,'safe landing must not add a five-second idle hold');assert.equal(dist(before,bird),0,'edit preserves current world position');
 tick(w,10);assert.ok(bird.support.startsWith('rail-'));assert.equal(bird.memory.some(m=>m.type==='drank'),false);
 installPlan(w,'sparrow-a',w.revision,['drink:water-near']);tick(w,12);assert.equal(bird.memory.filter(m=>m.type==='drank').length,1);assert.ok(bird.need<.4);
 assert.doesNotThrow(()=>validateRequest(perception(w,'sparrow-a')));
@@ -34,6 +34,11 @@ assert.ok(!('memory' in neighbors(s,a.id)[0]),'neighbors do not reveal private m
 installPlan(w,'sparrow-a',w.revision,['visit:ficus-branch']);tick(w,.3);const stored=saveWorld(w),restored=restoreWorld(JSON.stringify(stored));assert.equal(restored.time,stored.time);assert.equal(dist(restored.residents[bird.id],bird),0);assert.deepEqual(restored.residents[bird.id].memory.map(m=>m.type),bird.memory.map(m=>m.type));
 assert.equal(restoreWorld('{bad').time,0);assert.equal(restoreWorld({version:1,time:90}).time,0);
 const dry=createWorld(),edgeTarget=targets(dry,'snail').find(t=>t.id==='water-edge');Object.assign(dry.residents.snail,{x:edgeTarget.x,y:0,z:edgeTarget.z,support:'water-edge'});dry.objects.find(o=>o.id==='water').wet=.09;assert.equal(installPlan(dry,'snail',0,['shelter:water-edge']).ok,true);tick(dry,10);assert.equal(dry.residents.snail.memory.some(m=>m.type==='sheltered'),false,'a place that dried out is not remembered as successfully damp');
+const satisfied=createWorld();for(const id of ['sparrow-a','butterfly']){satisfied.residents[id].need=.05;assert.ok(!perception(satisfied,id).candidates.some(c=>['drink','feed'].includes(c.kind)),'satisfied residents cannot repeatedly consume');}assert.equal(installPlan(satisfied,'sparrow-a',0,['drink:water-near']).ok,false);satisfied.residents['sparrow-a'].need=.3;assert.ok(perception(satisfied,'sparrow-a').candidates.some(c=>c.kind==='drink'));
+const promptRequest=validateRequest(perception(s,'sparrow-a')),input=decisionInput(promptRequest);assert.ok(input.messages[1].content.includes('shared_space'));assert.ok(input.messages[1].content.includes('near=sparrow-b'));assert.ok(!decisionInput({...promptRequest,memory:[]}).messages[1].content.includes('shared_space'),'empty-memory control must really remove encounters');
+for(let i=0;i<20;i++)recordEvent(s,'neighbor_arrived',a.id,'nearby',{otherId:b.id});assert.equal(a.memory.filter(m=>m.type==='neighbor_arrived'&&m.otherId===b.id).length,1);assert.ok(a.memory.some(m=>m.type==='shared_space'),'duplicate sightings must not erase an actual encounter');
+assert.throws(()=>validateRequest({...perception(s,a.id),perception:{...perception(s,a.id).perception,simTime:-1}}),/invalid_perception/);
+const hops=createWorld(),hopper=hops.residents['sparrow-a'];Object.assign(hopper,{x:.31,y:0,z:.97,support:'water-wait'});assert.equal(installPlan(hops,hopper.id,0,['drink:water-near']).ok,true);tick(hops,.1);assert.equal(hopper.action.locomotion,'hop');assert.ok(hopper.action.apex<.4);
 const directory=mkdtempSync(join(tmpdir(),'cohabitat-budget-'));
 try{const file=join(directory,'ledger.json'),money=openBudget(file,1);money.reserve('a',.4);assert.throws(()=>money.reserve('b',.7),/budget_exhausted/);assert.equal(openBudget(file,1).summary().reservedCny,.4);money.settle('a',.1);assert.equal(openBudget(file,1).summary().settledCny,.1);assert.throws(()=>money.reserve('c',NaN),/invalid_reservation/);assert.throws(()=>openBudget(file,101),/invalid_budget/);assert.equal(costCny(1e6,1e6,{input:.06,output:.24}),3);}finally{rmSync(directory,{recursive:true,force:true});}
 server.listen(0,'127.0.0.1');await once(server,'listening');

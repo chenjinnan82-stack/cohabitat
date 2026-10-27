@@ -21,7 +21,7 @@ function manualTimeline(){
   manual=[
     [0,()=>{installPlan(world,'sparrow-a',world.revision,['drink:water-near','visit:ficus-branch'],'manual');installPlan(world,'snail',world.revision,['visit:water-edge','shelter:water-edge'],'manual');installPlan(world,'butterfly',world.revision,['feed:flower-top','visit:maple-tip'],'manual');}],
     [1.8,()=>installPlan(world,'sparrow-b',world.revision,['wait:water-wait','drink:water-far'],'manual')],
-    [12,()=>installPlan(world,'sparrow-a',world.revision,['visit:rail-left','drink:water-near'],'manual')],
+    [12,()=>installPlan(world,'sparrow-a',world.revision,['visit:rail-left','visit:water-wait'],'manual')],
     [14,()=>{relocate('shade',-1.55,1.25);installPlan(world,'snail',world.revision,['shelter:water-edge'],'manual');}],
     [18,()=>installPlan(world,'butterfly',world.revision,['feed:flower-top'],'manual')],
     [24,()=>installPlan(world,'sparrow-b',world.revision,['visit:maple-branch'],'manual')]

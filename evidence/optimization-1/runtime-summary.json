@@ -1,0 +1,109 @@
+{
+  "wallSeconds": 206,
+  "activeSeconds": 205,
+  "simulationSeconds": 205,
+  "frameMs": {
+    "p50": 16.7,
+    "p95": 18.5,
+    "max": 33.4,
+    "over50ms": 0,
+    "over100ms": 0
+  },
+  "inputFeedbackMs": {
+    "count": 18,
+    "p50": 1.5,
+    "p95": 8.5
+  },
+  "drawMs": {
+    "p50": 1.2,
+    "p95": 1.8
+  },
+  "model": {
+    "configured": true,
+    "provider": "ollama",
+    "model": "qwen2.5:7b",
+    "calls": 40,
+    "applied": 40,
+    "failures": 1,
+    "p50": 1807,
+    "p95": 2191
+  },
+  "tokens": {
+    "p50": 407,
+    "p95": 480
+  },
+  "promptMs": {
+    "p50": 1384,
+    "p95": 1727
+  },
+  "lowNeedConsumption": 0,
+  "actionCounts": {
+    "drink:water-near": 4,
+    "drink:water-far": 1,
+    "visit:water-edge": 2,
+    "feed:flower-top": 2,
+    "visit:water-wait": 3,
+    "visit:water-near": 3,
+    "visit:sun-rest": 3,
+    "shelter:water-edge": 3,
+    "visit:water-far": 5,
+    "visit:flower-top": 4,
+    "visit:rail-left": 2,
+    "visit:ficus-tip": 1,
+    "visit:ficus-edge": 1,
+    "visit:rail-right": 2,
+    "rest:here": 3,
+    "visit:maple-branch": 1
+  },
+  "events": {
+    "neighbor_arrived": 53,
+    "plan_accepted": 40,
+    "model_applied": 40,
+    "neighbor_left": 50,
+    "arrived": 35,
+    "shared_space": 26,
+    "drank": 5,
+    "action_completed": 36,
+    "fed": 2,
+    "sheltered": 2,
+    "disturbed": 5,
+    "target_moved": 3,
+    "environment_edited": 3,
+    "water_added": 2
+  },
+  "failures": [
+    {
+      "residentId": "sparrow-a",
+      "status": 429,
+      "error": "rate_limited",
+      "at": 72.54510000028863
+    }
+  ],
+  "rejections": [],
+  "serverInterruptedRequests": [
+    {
+      "time": "2026-10-27T06:36:43.292Z",
+      "residentId": "snail",
+      "error": "provider_timeout_or_cancelled",
+      "durationMs": 687
+    },
+    {
+      "time": "2026-10-27T06:37:20.891Z",
+      "residentId": "snail",
+      "error": "provider_timeout_or_cancelled",
+      "durationMs": 786
+    },
+    {
+      "time": "2026-10-27T06:37:27.242Z",
+      "residentId": "sparrow-b",
+      "error": "provider_timeout_or_cancelled",
+      "durationMs": 236
+    },
+    {
+      "time": "2026-10-27T06:37:39.036Z",
+      "residentId": "butterfly",
+      "error": "provider_timeout_or_cancelled",
+      "durationMs": 931
+    }
+  ]
+}

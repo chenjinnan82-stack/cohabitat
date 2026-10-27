@@ -15,3 +15,4 @@ release/
 *.mp4
 evidence/*
 !evidence/3d/
+!evidence/optimization-1/

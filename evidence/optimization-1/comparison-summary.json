@@ -1,0 +1,105 @@
+{
+  "baseline": {
+    "water-rim-encounter / actual": {
+      "visit:water-wait": 3
+    },
+    "water-rim-encounter / empty-memory": {
+      "visit:water-wait": 3
+    },
+    "water-rim-encounter / unobserved-neighbors": {
+      "drink:water-far": 2,
+      "visit:rail-left": 1
+    },
+    "water-waiting-encounter / actual": {
+      "drink:water-far": 3
+    },
+    "water-waiting-encounter / empty-memory": {
+      "drink:water-far": 3
+    },
+    "water-waiting-encounter / unobserved-neighbors": {
+      "visit:rail-left": 3
+    }
+  },
+  "compact": {
+    "water-rim-encounter / actual": {
+      "drink:water-far": 3
+    },
+    "water-rim-encounter / empty-memory": {
+      "visit:rail-left": 3
+    },
+    "water-rim-encounter / unobserved-neighbors": {
+      "visit:water-wait": 3
+    },
+    "water-waiting-encounter / actual": {
+      "visit:rail-left": 2,
+      "visit:water-far": 1
+    },
+    "water-waiting-encounter / empty-memory": {
+      "visit:rail-left": 3
+    },
+    "water-waiting-encounter / unobserved-neighbors": {
+      "visit:water-far": 3
+    }
+  },
+  "compact-v2": {
+    "water-rim-encounter / actual": {
+      "drink:water-far": 3
+    },
+    "water-rim-encounter / empty-memory": {
+      "drink:water-far": 3
+    },
+    "water-rim-encounter / unobserved-neighbors": {
+      "drink:water-far": 3
+    },
+    "water-waiting-encounter / actual": {
+      "visit:water-far": 3
+    },
+    "water-waiting-encounter / empty-memory": {
+      "visit:water-far": 3
+    },
+    "water-waiting-encounter / unobserved-neighbors": {
+      "drink:water-far": 2,
+      "visit:water-far": 1
+    }
+  },
+  "compact-v3": {
+    "water-rim-encounter / actual": {
+      "drink:water-far": 3
+    },
+    "water-rim-encounter / empty-memory": {
+      "visit:rail-left": 3
+    },
+    "water-rim-encounter / unobserved-neighbors": {
+      "visit:rail-left": 3
+    },
+    "water-waiting-encounter / actual": {
+      "visit:rail-left": 3
+    },
+    "water-waiting-encounter / empty-memory": {
+      "visit:rail-left": 3
+    },
+    "water-waiting-encounter / unobserved-neighbors": {
+      "drink:water-far": 3
+    }
+  },
+  "final": {
+    "water-rim-encounter / actual": {
+      "drink:water-far": 3
+    },
+    "water-rim-encounter / empty-memory": {
+      "drink:water-far": 3
+    },
+    "water-rim-encounter / unobserved-neighbors": {
+      "drink:water-far": 3
+    },
+    "water-waiting-encounter / actual": {
+      "drink:water-far": 3
+    },
+    "water-waiting-encounter / empty-memory": {
+      "drink:water-far": 3
+    },
+    "water-waiting-encounter / unobserved-neighbors": {
+      "drink:water-far": 3
+    }
+  }
+}

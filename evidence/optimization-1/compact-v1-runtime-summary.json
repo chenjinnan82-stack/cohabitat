@@ -1,0 +1,75 @@
+{
+  "path": "evidence/optimization-1/m1-pro-ollama-runtime.json",
+  "wallSeconds": 401,
+  "activeSeconds": 400,
+  "simulationSeconds": 392,
+  "frameMs": {
+    "p50": 16.7,
+    "p95": 18.3,
+    "max": 18.8,
+    "over50ms": 0,
+    "over100ms": 0
+  },
+  "inputFeedbackMs": {
+    "count": 18,
+    "p50": 1.5,
+    "p95": 12
+  },
+  "drawMs": {
+    "p50": 1.3,
+    "p95": 1.9
+  },
+  "model": {
+    "configured": true,
+    "provider": "ollama",
+    "model": "qwen2.5:7b",
+    "calls": 83,
+    "applied": 83,
+    "failures": 0,
+    "p50": 1703,
+    "p95": 2040
+  },
+  "tokens": {
+    "p50": 363,
+    "p95": 416
+  },
+  "promptMs": {
+    "p50": 1237,
+    "p95": 1563
+  },
+  "lowNeedConsumption": 0,
+  "actionCounts": {
+    "visit:water-near": 12,
+    "visit:water-wait": 11,
+    "visit:water-edge": 9,
+    "visit:flower-top": 9,
+    "visit:maple-branch": 2,
+    "visit:sun-rest": 10,
+    "visit:rail-left": 3,
+    "visit:ground-left": 8,
+    "visit:water-far": 10,
+    "drink:water-near": 5,
+    "visit:ficus-tip": 1,
+    "feed:flower-top": 1,
+    "shelter:water-edge": 1,
+    "visit:rail-right": 1
+  },
+  "events": {
+    "arrived": 59,
+    "action_completed": 63,
+    "shared_space": 42,
+    "plan_accepted": 59,
+    "model_applied": 59,
+    "neighbor_arrived": 47,
+    "drank": 3,
+    "neighbor_left": 54,
+    "fed": 1,
+    "disturbed": 4,
+    "target_moved": 3,
+    "environment_edited": 3,
+    "water_added": 2,
+    "sheltered": 1
+  },
+  "failures": [],
+  "rejections": []
+}
