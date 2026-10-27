@@ -1,0 +1,551 @@
+[
+  {
+    "name": "sparrow-a-first-shared-watch",
+    "sourceDecisionId": "64190e2d-b5ba-4037-bbb7-a593303c7793",
+    "selection": "First observation in this run with need < 0.7, other sparrow visible, actual shared_space event with that sparrow and its watch action available. Selected before comparison calls.",
+    "originalActions": [
+      "visit:water-wait"
+    ],
+    "request": {
+      "residentId": "sparrow-a",
+      "species": "sparrow",
+      "revision": 0,
+      "perception": {
+        "position": {
+          "x": -0.42,
+          "y": 0.15,
+          "z": 1.1800000000000002
+        },
+        "simTime": 12.8,
+        "need": 0.15,
+        "needMeans": "thirst",
+        "preference": "Amber: curious, approaches resources readily, tolerates a familiar neighbor, avoids repeated disturbance.",
+        "inShade": false
+      },
+      "neighbors": [
+        {
+          "residentId": "sparrow-b",
+          "species": "sparrow",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 0.38
+          },
+          "activity": "drink",
+          "distance": 0.8
+        },
+        {
+          "residentId": "snail",
+          "species": "snail",
+          "position": {
+            "x": -1.07,
+            "y": 0,
+            "z": 0.88
+          },
+          "activity": "visit",
+          "distance": 0.73
+        },
+        {
+          "residentId": "butterfly",
+          "species": "butterfly",
+          "position": {
+            "x": 1.12,
+            "y": 0.63,
+            "z": 1.1
+          },
+          "activity": "feed",
+          "distance": 1.62
+        }
+      ],
+      "memory": [
+        {
+          "id": 5,
+          "at": 4.3,
+          "type": "neighbor_left",
+          "residentId": "sparrow-a",
+          "targetId": "nearby",
+          "otherId": "snail",
+          "position": {
+            "x": -1.8912579202655604,
+            "y": 1.6966610297241882,
+            "z": -1.2136527821937095
+          }
+        },
+        {
+          "id": 6,
+          "at": 4.6,
+          "type": "neighbor_arrived",
+          "residentId": "sparrow-a",
+          "targetId": "nearby",
+          "otherId": "butterfly",
+          "position": {
+            "x": -1.62061843806365,
+            "y": 1.9978491429724161,
+            "z": -0.7733377696994097
+          }
+        },
+        {
+          "id": 7,
+          "at": 4.9,
+          "type": "neighbor_arrived",
+          "residentId": "sparrow-a",
+          "targetId": "nearby",
+          "otherId": "snail",
+          "position": {
+            "x": -1.318239032642312,
+            "y": 2.003946246390227,
+            "z": -0.2813837111382691
+          }
+        },
+        {
+          "id": 13,
+          "at": 6.7,
+          "type": "arrived",
+          "residentId": "sparrow-a",
+          "targetId": "water-near",
+          "source": "model",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 1.1800000000000002
+          }
+        },
+        {
+          "id": 14,
+          "at": 6.8,
+          "type": "neighbor_arrived",
+          "residentId": "sparrow-a",
+          "targetId": "nearby",
+          "otherId": "sparrow-b",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 1.1800000000000002
+          }
+        },
+        {
+          "id": 26,
+          "at": 11.6,
+          "type": "shared_space",
+          "residentId": "sparrow-a",
+          "targetId": "water-near",
+          "otherId": "sparrow-b",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 1.1800000000000002
+          }
+        },
+        {
+          "id": 28,
+          "at": 11.7,
+          "type": "drank",
+          "residentId": "sparrow-a",
+          "targetId": "water",
+          "source": "model",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 1.1800000000000002
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "id": "visit:rail-left",
+          "kind": "visit",
+          "targetId": "rail-left",
+          "description": "Move to rail-left and look around",
+          "position": {
+            "x": -2.35,
+            "y": 0.78,
+            "z": -1.96
+          },
+          "shade": false,
+          "damp": false
+        },
+        {
+          "id": "visit:rail-right",
+          "kind": "visit",
+          "targetId": "rail-right",
+          "description": "Move to rail-right and look around",
+          "position": {
+            "x": 2.35,
+            "y": 0.78,
+            "z": -1.96
+          },
+          "shade": false,
+          "damp": false
+        },
+        {
+          "id": "visit:water-wait",
+          "kind": "visit",
+          "targetId": "water-wait",
+          "description": "Move to water-wait and look around",
+          "position": {
+            "x": 0.31,
+            "y": 0,
+            "z": 0.97
+          },
+          "shade": false,
+          "damp": true
+        },
+        {
+          "id": "wait:water-wait",
+          "kind": "wait",
+          "targetId": "water-wait",
+          "description": "Wait near the water and watch its users",
+          "position": {
+            "x": 0.31,
+            "y": 0,
+            "z": 0.97
+          },
+          "shade": false,
+          "damp": true
+        },
+        {
+          "id": "visit:ficus-branch",
+          "kind": "visit",
+          "targetId": "ficus-branch",
+          "description": "Move to ficus-branch and look around",
+          "position": {
+            "x": -0.8200000000000001,
+            "y": 1.1,
+            "z": -0.27
+          },
+          "shade": false,
+          "damp": false
+        },
+        {
+          "id": "visit:maple-branch",
+          "kind": "visit",
+          "targetId": "maple-branch",
+          "description": "Move to maple-branch and look around",
+          "position": {
+            "x": 0.98,
+            "y": 1.05,
+            "z": -0.4
+          },
+          "shade": false,
+          "damp": false
+        },
+        {
+          "id": "watch:sparrow-b",
+          "kind": "watch",
+          "targetId": "sparrow-b",
+          "description": "Stay here and watch sparrow-b for 12 seconds; no travel",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 1.1800000000000002
+          },
+          "shade": false
+        },
+        {
+          "id": "watch:snail",
+          "kind": "watch",
+          "targetId": "snail",
+          "description": "Stay here and watch snail for 12 seconds; no travel",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 1.1800000000000002
+          },
+          "shade": false
+        },
+        {
+          "id": "watch:butterfly",
+          "kind": "watch",
+          "targetId": "butterfly",
+          "description": "Stay here and watch butterfly for 12 seconds; no travel",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 1.1800000000000002
+          },
+          "shade": false
+        },
+        {
+          "id": "rest:here",
+          "kind": "rest",
+          "targetId": "here",
+          "description": "Settle here for 20 seconds; no travel or need to keep exploring",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 1.1800000000000002
+          },
+          "shade": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "sparrow-b-first-shared-watch",
+    "sourceDecisionId": "4dd8fa46-7d08-4357-b8d3-67f89d370d35",
+    "selection": "First observation in this run with need < 0.7, other sparrow visible, actual shared_space event with that sparrow and its watch action available. Selected before comparison calls.",
+    "originalActions": [
+      "visit:water-near"
+    ],
+    "request": {
+      "residentId": "sparrow-b",
+      "species": "sparrow",
+      "revision": 0,
+      "perception": {
+        "position": {
+          "x": -0.42,
+          "y": 0.15,
+          "z": 0.38
+        },
+        "simTime": 15.8,
+        "need": 0,
+        "needMeans": "thirst",
+        "preference": "Ash: cautious, watches before approaching, remembers who recently occupied a place, may share after calm encounters.",
+        "inShade": false
+      },
+      "neighbors": [
+        {
+          "residentId": "sparrow-a",
+          "species": "sparrow",
+          "position": {
+            "x": -0.3778574342278026,
+            "y": 0.16659238211988778,
+            "z": 1.167876796147724
+          },
+          "activity": "moving",
+          "distance": 0.79
+        },
+        {
+          "residentId": "snail",
+          "species": "snail",
+          "position": {
+            "x": -1.07,
+            "y": 0,
+            "z": 0.88
+          },
+          "activity": "visit",
+          "distance": 0.83
+        },
+        {
+          "residentId": "butterfly",
+          "species": "butterfly",
+          "position": {
+            "x": 1.12,
+            "y": 0.63,
+            "z": 1.1
+          },
+          "activity": "rest",
+          "distance": 1.77
+        }
+      ],
+      "memory": [
+        {
+          "id": 12,
+          "at": 6.2,
+          "type": "neighbor_left",
+          "residentId": "sparrow-b",
+          "targetId": "nearby",
+          "otherId": "butterfly",
+          "position": {
+            "x": 2.0534392457238035,
+            "y": 1.2307111861508273,
+            "z": -1.7094757527053068
+          }
+        },
+        {
+          "id": 15,
+          "at": 6.8,
+          "type": "neighbor_arrived",
+          "residentId": "sparrow-b",
+          "targetId": "nearby",
+          "otherId": "sparrow-a",
+          "position": {
+            "x": 1.344561512409251,
+            "y": 1.9780886324210887,
+            "z": -1.1106404112049266
+          }
+        },
+        {
+          "id": 16,
+          "at": 6.8,
+          "type": "neighbor_arrived",
+          "residentId": "sparrow-b",
+          "targetId": "nearby",
+          "otherId": "butterfly",
+          "position": {
+            "x": 1.344561512409251,
+            "y": 1.9780886324210887,
+            "z": -1.1106404112049266
+          }
+        },
+        {
+          "id": 18,
+          "at": 7.4,
+          "type": "neighbor_arrived",
+          "residentId": "sparrow-b",
+          "targetId": "nearby",
+          "otherId": "snail",
+          "position": {
+            "x": 0.5125568155486302,
+            "y": 1.7298948319051493,
+            "z": -0.4077916781168933
+          }
+        },
+        {
+          "id": 23,
+          "at": 8.9,
+          "type": "arrived",
+          "residentId": "sparrow-b",
+          "targetId": "water-far",
+          "source": "model",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 0.38
+          }
+        },
+        {
+          "id": 27,
+          "at": 11.6,
+          "type": "shared_space",
+          "residentId": "sparrow-b",
+          "targetId": "water-far",
+          "otherId": "sparrow-a",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 0.38
+          }
+        },
+        {
+          "id": 31,
+          "at": 13.9,
+          "type": "drank",
+          "residentId": "sparrow-b",
+          "targetId": "water",
+          "source": "model",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 0.38
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "id": "visit:rail-left",
+          "kind": "visit",
+          "targetId": "rail-left",
+          "description": "Move to rail-left and look around",
+          "position": {
+            "x": -2.35,
+            "y": 0.78,
+            "z": -1.96
+          },
+          "shade": false,
+          "damp": false
+        },
+        {
+          "id": "visit:rail-right",
+          "kind": "visit",
+          "targetId": "rail-right",
+          "description": "Move to rail-right and look around",
+          "position": {
+            "x": 2.35,
+            "y": 0.78,
+            "z": -1.96
+          },
+          "shade": false,
+          "damp": false
+        },
+        {
+          "id": "visit:water-near",
+          "kind": "visit",
+          "targetId": "water-near",
+          "description": "Move to water-near and look around",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 1.1800000000000002
+          },
+          "shade": false,
+          "damp": true
+        },
+        {
+          "id": "visit:ficus-branch",
+          "kind": "visit",
+          "targetId": "ficus-branch",
+          "description": "Move to ficus-branch and look around",
+          "position": {
+            "x": -0.8200000000000001,
+            "y": 1.1,
+            "z": -0.27
+          },
+          "shade": false,
+          "damp": false
+        },
+        {
+          "id": "visit:maple-branch",
+          "kind": "visit",
+          "targetId": "maple-branch",
+          "description": "Move to maple-branch and look around",
+          "position": {
+            "x": 0.98,
+            "y": 1.05,
+            "z": -0.4
+          },
+          "shade": false,
+          "damp": false
+        },
+        {
+          "id": "watch:sparrow-a",
+          "kind": "watch",
+          "targetId": "sparrow-a",
+          "description": "Stay here and watch sparrow-a for 12 seconds; no travel",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 0.38
+          },
+          "shade": false
+        },
+        {
+          "id": "watch:snail",
+          "kind": "watch",
+          "targetId": "snail",
+          "description": "Stay here and watch snail for 12 seconds; no travel",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 0.38
+          },
+          "shade": false
+        },
+        {
+          "id": "watch:butterfly",
+          "kind": "watch",
+          "targetId": "butterfly",
+          "description": "Stay here and watch butterfly for 12 seconds; no travel",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 0.38
+          },
+          "shade": false
+        },
+        {
+          "id": "rest:here",
+          "kind": "rest",
+          "targetId": "here",
+          "description": "Settle here for 20 seconds; no travel or need to keep exploring",
+          "position": {
+            "x": -0.42,
+            "y": 0.15,
+            "z": 0.38
+          },
+          "shade": false
+        }
+      ]
+    }
+  }
+]

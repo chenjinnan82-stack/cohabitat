@@ -84,7 +84,7 @@ function startRecording(seconds,resetMotion=true){
   const output=document.createElement('canvas');output.width=1280;output.height=Math.round(1280*canvas.clientHeight/canvas.clientWidth/2)*2;
   const context=output.getContext('2d'),stream=output.captureStream(30),mime=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/mp4'].find(m=>MediaRecorder.isTypeSupported(m));
   const recorder=new MediaRecorder(stream,mime?{mimeType:mime,videoBitsPerSecond:4500000}:{}),chunks=[],instance={recorder,context,output,started:performance.now(),timer:null};
-  recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};recorder.onstop=()=>{clearTimeout(instance.timer);stream.getTracks().forEach(t=>t.stop());download(new Blob(chunks,{type:recorder.mimeType}),'cohabitat-3d-'+mode+'-'+Date.now()+'.'+(recorder.mimeType.includes('mp4')?'mp4':'webm'));recording=null;$('#record').textContent='录制';};
+  recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};recorder.onstop=()=>{clearTimeout(instance.timer);stream.getTracks().forEach(t=>t.stop());const save=$('#record-save');if(save.hasAttribute('href'))URL.revokeObjectURL(save.href);save.href=URL.createObjectURL(new Blob(chunks,{type:recorder.mimeType}));save.download='cohabitat-3d-'+mode+'-'+Date.now()+'.'+(recorder.mimeType.includes('mp4')?'mp4':'webm');save.hidden=false;recording=null;$('#record').textContent='录制';};
   recorder.onerror=()=>notice('录制未完成，请重试。');recording=instance;recorder.start(1000);instance.timer=setTimeout(()=>{if(recorder.state==='recording')recorder.stop();},seconds*1000);
 }
 $('#record').addEventListener('click',()=>startRecording(mode==='motion'?30:175));

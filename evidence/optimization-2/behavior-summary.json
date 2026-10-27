@@ -1,0 +1,601 @@
+{
+  "previous": {
+    "activeSeconds": 205,
+    "calls": 40,
+    "firstActions": {
+      "drink": 5,
+      "visit": 27,
+      "feed": 2,
+      "shelter": 3,
+      "rest": 3
+    },
+    "eligibleSatisfiedRecentVisits": 25,
+    "repeats": 5,
+    "byResident": {
+      "sparrow-a": {
+        "repeat": 2,
+        "eligible": 8
+      },
+      "sparrow-b": {
+        "repeat": 1,
+        "eligible": 7
+      },
+      "snail": {
+        "repeat": 0,
+        "eligible": 4
+      },
+      "butterfly": {
+        "repeat": 2,
+        "eligible": 6
+      }
+    },
+    "rows": [
+      {
+        "resident": "sparrow-a",
+        "time": 12.5,
+        "repeat": false,
+        "chosen": "visit:water-wait"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 14.9,
+        "repeat": false,
+        "chosen": "visit:water-near"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 21.5,
+        "repeat": false,
+        "chosen": "visit:water-far"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 23.6,
+        "repeat": false,
+        "chosen": "visit:water-wait"
+      },
+      {
+        "resident": "butterfly",
+        "time": 26,
+        "repeat": false,
+        "chosen": "visit:flower-top"
+      },
+      {
+        "resident": "butterfly",
+        "time": 66.5,
+        "repeat": false,
+        "chosen": "visit:flower-top"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 81.5,
+        "repeat": false,
+        "chosen": "visit:rail-left"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 83.6,
+        "repeat": false,
+        "chosen": "visit:water-near"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 121.7,
+        "repeat": false,
+        "chosen": "visit:water-far"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 132.8,
+        "repeat": false,
+        "chosen": "visit:water-wait"
+      },
+      {
+        "resident": "butterfly",
+        "time": 135.2,
+        "repeat": false,
+        "chosen": "visit:ficus-tip"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 137.3,
+        "repeat": false,
+        "chosen": "visit:rail-left"
+      },
+      {
+        "resident": "snail",
+        "time": 140,
+        "repeat": false,
+        "chosen": "visit:ficus-edge"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 141.8,
+        "repeat": false,
+        "chosen": "visit:water-near"
+      },
+      {
+        "resident": "butterfly",
+        "time": 147.5,
+        "repeat": true,
+        "chosen": "visit:flower-top"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 149,
+        "repeat": false,
+        "chosen": "visit:rail-right"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 151.1,
+        "repeat": true,
+        "chosen": "visit:water-far"
+      },
+      {
+        "resident": "snail",
+        "time": 181.7,
+        "repeat": false,
+        "chosen": "rest:here"
+      },
+      {
+        "resident": "butterfly",
+        "time": 184.4,
+        "repeat": false,
+        "chosen": "visit:sun-rest"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 186.5,
+        "repeat": false,
+        "chosen": "visit:maple-branch"
+      },
+      {
+        "resident": "snail",
+        "time": 192.8,
+        "repeat": false,
+        "chosen": "rest:here"
+      },
+      {
+        "resident": "butterfly",
+        "time": 195.2,
+        "repeat": true,
+        "chosen": "visit:flower-top"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 197.3,
+        "repeat": true,
+        "chosen": "visit:rail-right"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 200,
+        "repeat": true,
+        "chosen": "visit:water-far"
+      },
+      {
+        "resident": "snail",
+        "time": 202.1,
+        "repeat": false,
+        "chosen": "rest:here"
+      }
+    ],
+    "promptTokens": {
+      "p50": 407,
+      "p95": 480
+    },
+    "model": {
+      "configured": true,
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "calls": 40,
+      "applied": 40,
+      "failures": 1,
+      "p50": 1807,
+      "p95": 2191
+    }
+  },
+  "current": {
+    "activeSeconds": 487,
+    "calls": 94,
+    "firstActions": {
+      "drink": 9,
+      "visit": 48,
+      "feed": 4,
+      "shelter": 3,
+      "watch": 29,
+      "rest": 1
+    },
+    "eligibleSatisfiedRecentVisits": 58,
+    "repeats": 4,
+    "byResident": {
+      "sparrow-a": {
+        "repeat": 0,
+        "eligible": 19
+      },
+      "sparrow-b": {
+        "repeat": 3,
+        "eligible": 19
+      },
+      "snail": {
+        "repeat": 1,
+        "eligible": 7
+      },
+      "butterfly": {
+        "repeat": 0,
+        "eligible": 13
+      }
+    },
+    "rows": [
+      {
+        "resident": "sparrow-a",
+        "time": 12.8,
+        "repeat": false,
+        "chosen": "visit:water-wait"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 15.8,
+        "repeat": false,
+        "chosen": "visit:water-near"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 23.3,
+        "repeat": false,
+        "chosen": "visit:water-far"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 26.3,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 34.1,
+        "repeat": false,
+        "chosen": "watch:sparrow-b"
+      },
+      {
+        "resident": "butterfly",
+        "time": 61.4,
+        "repeat": false,
+        "chosen": "visit:flower-top"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 63.8,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "snail",
+        "time": 67.1,
+        "repeat": false,
+        "chosen": "visit:ground-left"
+      },
+      {
+        "resident": "butterfly",
+        "time": 75.8,
+        "repeat": false,
+        "chosen": "watch:sparrow-b"
+      },
+      {
+        "resident": "snail",
+        "time": 84.5,
+        "repeat": false,
+        "chosen": "visit:ground-middle"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 95,
+        "repeat": false,
+        "chosen": "visit:water-far"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 127.4,
+        "repeat": false,
+        "chosen": "visit:water-wait"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 139.1,
+        "repeat": false,
+        "chosen": "watch:sparrow-b"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 141.8,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "snail",
+        "time": 144.2,
+        "repeat": false,
+        "chosen": "visit:ground-middle"
+      },
+      {
+        "resident": "butterfly",
+        "time": 146,
+        "repeat": false,
+        "chosen": "rest:here"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 154.4,
+        "repeat": false,
+        "chosen": "visit:water-far"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 157.4,
+        "repeat": false,
+        "chosen": "visit:water-wait"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 164,
+        "repeat": false,
+        "chosen": "watch:sparrow-b"
+      },
+      {
+        "resident": "butterfly",
+        "time": 184.4,
+        "repeat": false,
+        "chosen": "visit:flower-top"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 187.7,
+        "repeat": false,
+        "chosen": "visit:rail-left"
+      },
+      {
+        "resident": "butterfly",
+        "time": 195.2,
+        "repeat": false,
+        "chosen": "visit:sun-rest"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 200.3,
+        "repeat": false,
+        "chosen": "visit:rail-right"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 204.5,
+        "repeat": false,
+        "chosen": "watch:snail"
+      },
+      {
+        "resident": "butterfly",
+        "time": 207.2,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 214.7,
+        "repeat": false,
+        "chosen": "watch:butterfly"
+      },
+      {
+        "resident": "snail",
+        "time": 217.7,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 224.3,
+        "repeat": false,
+        "chosen": "visit:water-far"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 244.4,
+        "repeat": false,
+        "chosen": "watch:butterfly"
+      },
+      {
+        "resident": "snail",
+        "time": 248,
+        "repeat": false,
+        "chosen": "visit:ground-middle"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 251,
+        "repeat": false,
+        "chosen": "watch:snail"
+      },
+      {
+        "resident": "butterfly",
+        "time": 266,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "snail",
+        "time": 268.1,
+        "repeat": false,
+        "chosen": "visit:ground-left"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 271.1,
+        "repeat": false,
+        "chosen": "visit:water-near"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 280.4,
+        "repeat": false,
+        "chosen": "watch:sparrow-b"
+      },
+      {
+        "resident": "butterfly",
+        "time": 284.6,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "snail",
+        "time": 302.6,
+        "repeat": true,
+        "chosen": "visit:ground-middle"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 304.7,
+        "repeat": false,
+        "chosen": "visit:water-wait"
+      },
+      {
+        "resident": "butterfly",
+        "time": 311.3,
+        "repeat": false,
+        "chosen": "visit:sun-rest"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 317,
+        "repeat": false,
+        "chosen": "visit:water-near"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 331.4,
+        "repeat": true,
+        "chosen": "visit:water-wait"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 335.3,
+        "repeat": false,
+        "chosen": "visit:water-near"
+      },
+      {
+        "resident": "butterfly",
+        "time": 340.7,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 344.6,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 364.7,
+        "repeat": false,
+        "chosen": "visit:rail-left"
+      },
+      {
+        "resident": "butterfly",
+        "time": 368.3,
+        "repeat": false,
+        "chosen": "visit:flower-top"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 371.3,
+        "repeat": true,
+        "chosen": "visit:water-near"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 377.3,
+        "repeat": false,
+        "chosen": "visit:rail-right"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 388.7,
+        "repeat": true,
+        "chosen": "visit:water-wait"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 391.7,
+        "repeat": false,
+        "chosen": "visit:maple-branch"
+      },
+      {
+        "resident": "butterfly",
+        "time": 395.6,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 404.9,
+        "repeat": false,
+        "chosen": "visit:water-wait"
+      },
+      {
+        "resident": "butterfly",
+        "time": 425,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 428.6,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 431.6,
+        "repeat": false,
+        "chosen": "watch:sparrow-b"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 447.2,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      },
+      {
+        "resident": "sparrow-a",
+        "time": 459.8,
+        "repeat": false,
+        "chosen": "visit:rail-left"
+      },
+      {
+        "resident": "sparrow-b",
+        "time": 462.8,
+        "repeat": false,
+        "chosen": "watch:sparrow-a"
+      }
+    ],
+    "promptTokens": {
+      "p50": 543,
+      "p95": 684
+    },
+    "model": {
+      "configured": true,
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "calls": 94,
+      "applied": 93,
+      "failures": 1,
+      "p50": 2238,
+      "p95": 3077
+    },
+    "first205seconds": {
+      "calls": 42,
+      "eligible": 24,
+      "repeats": 0
+    }
+  },
+  "method": "Exploratory comparison, different durations and intervention times, not a randomized trial. Eligible: need <0.2 and at least one remembered arrival within60s without later disturbed/target_moved event. Repeat: first chosen action is visit to such a target. Longer stationary durations and added watch options are confounds. Each result stores the counted rows."
+}

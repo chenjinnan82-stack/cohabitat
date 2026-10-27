@@ -1,0 +1,44 @@
+{
+  "baseline": {
+    "sparrow-a-recent-return / actual": {
+      "visit:water-far": 3
+    },
+    "sparrow-a-recent-return / empty-memory": {
+      "visit:water-wait": 3
+    },
+    "sparrow-a-recent-return / unobserved-neighbors": {
+      "visit:water-wait": 3
+    },
+    "butterfly-recent-return / actual": {
+      "visit:flower-top": 3
+    },
+    "butterfly-recent-return / empty-memory": {
+      "visit:flower-top": 3
+    },
+    "butterfly-recent-return / unobserved-neighbors": {
+      "visit:flower-top": 3
+    }
+  },
+  "same-options": {
+    "sparrow-a-recent-return / actual": {
+      "wait:water-wait": 2,
+      "visit:rail-left": 1
+    },
+    "sparrow-a-recent-return / empty-memory": {
+      "visit:rail-left": 1,
+      "visit:water-wait": 2
+    },
+    "sparrow-a-recent-return / unobserved-neighbors": {
+      "visit:rail-left": 3
+    },
+    "butterfly-recent-return / actual": {
+      "rest:here": 3
+    },
+    "butterfly-recent-return / empty-memory": {
+      "visit:flower-top": 3
+    },
+    "butterfly-recent-return / unobserved-neighbors": {
+      "rest:here": 3
+    }
+  }
+}

@@ -16,3 +16,4 @@ release/
 evidence/*
 !evidence/3d/
 !evidence/optimization-1/
+!evidence/optimization-2/

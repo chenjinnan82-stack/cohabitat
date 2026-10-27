@@ -1,7 +1,7 @@
 export const FLOOR={minX:-2.72,maxX:2.72,minZ:-1.65,maxZ:1.65};
 export const SUN={x:-.405,y:.810,z:.425};
 export const IDS=['sparrow-a','sparrow-b','snail','butterfly'];
-export const MEMORY_TYPES=['arrived','drank','fed','sheltered','waited','disturbed','target_moved','blocked','neighbor_arrived','neighbor_left','shared_space'];
+export const MEMORY_TYPES=['arrived','drank','fed','sheltered','waited','watched','disturbed','target_moved','blocked','neighbor_arrived','neighbor_left','shared_space'];
 export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export const groundDist=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
@@ -147,7 +147,8 @@ export function candidates(w,id){
     if(t.kind==='flower'&&a.need>=.2)push('feed','Visit the flowers for nectar');
     if(a.species==='snail'&&a.need>=.2&&(t.shade||t.damp))push('shelter','Settle in this sheltered or damp place');
   }
-  options.push({id:'rest:here',kind:'rest',targetId:'here',description:'Stay in place and observe briefly',position:point(a),shade:inShade(w,a)});
+  for(const n of neighbors(w,id))options.push({id:'watch:'+n.residentId,kind:'watch',targetId:n.residentId,description:'Stay here and watch '+n.residentId+' for 12 seconds; no travel',position:point(a),shade:inShade(w,a)});
+  options.push({id:'rest:here',kind:'rest',targetId:'here',description:'Settle here for 20 seconds; no travel or need to keep exploring',position:point(a),shade:inShade(w,a)});
   return options;
 }
 export function neighbors(w,id){
@@ -180,9 +181,9 @@ function flightHeight(w,a,goal){
 function begin(w,a,item){
   const goal=item.position,path=a.species==='snail'?findPath(w,a,goal):null;
   if(a.species==='snail'&&path===null){recordEvent(w,'blocked',a.id,item.targetId);return;}
-  if(dist(a,goal)<.03&&item.targetId!=='here')a.support=item.targetId;
+  if(dist(a,goal)<.03&&item.targetId!=='here'&&item.kind!=='watch')a.support=item.targetId;
   const hop=a.species==='sparrow'&&a.y<=.18&&goal.y<=.18&&dist(a,goal)<.98&&!lineBlocked(w,{...a,y:a.y+.24},{...goal,y:goal.y+.24});
-  a.action={...item,locomotion:hop?'hop':'flight',goal:point(goal),from:point(a),path,pathIndex:0,elapsed:0,phaseTime:0,phase:dist(a,goal)<.03?'doing':'moving',travel:Math.max(hop?.44:.8,dist(a,goal)/(hop?1.75:a.species==='butterfly'?.85:1.25)),apex:hop?Math.max(a.y,goal.y)+.14:flightHeight(w,a,goal),duration:item.kind==='recovery'?0:item.kind==='wait'?7:item.kind==='shelter'?9:item.kind==='rest'?6:5};
+  a.action={...item,locomotion:hop?'hop':'flight',goal:point(goal),from:point(a),path,pathIndex:0,elapsed:0,phaseTime:0,phase:dist(a,goal)<.03?'doing':'moving',travel:Math.max(hop?.44:.8,dist(a,goal)/(hop?1.75:a.species==='butterfly'?.85:1.25)),apex:hop?Math.max(a.y,goal.y)+.14:flightHeight(w,a,goal),duration:item.kind==='recovery'?0:item.kind==='watch'?12:item.kind==='wait'?12:item.kind==='shelter'?9:item.kind==='rest'?20:5};
   if(a.action.phase==='moving')a.support=null;
 }
 function startNext(w,a){
@@ -207,6 +208,9 @@ function sense(w){
     for(const otherId of now)if(!a.seen.includes(otherId))recordEvent(w,'neighbor_arrived',a.id,'nearby',{otherId});
     for(const otherId of a.seen)if(!now.includes(otherId))recordEvent(w,'neighbor_left',a.id,'nearby',{otherId});
     a.seen=now;
+    if(a.action?.kind==='watch'&&!now.includes(a.action.targetId)){
+      recordEvent(w,'watch_ended',a.id,a.action.targetId,{reason:'out_of_view',source:a.action.source});a.action=null;a.queue=[];a.cooldown=.4;
+    }
     for(const b of Object.values(w.residents)){
       if(b.id===a.id)continue;
       const shared=now.includes(b.id)&&dist(a,b)<.95&&a.action?.phase!=='moving'&&b.action?.phase!=='moving';
@@ -236,7 +240,7 @@ export function stepWorld(w,dt){
     if(!a.action&&a.queue.length&&a.cooldown===0)startNext(w,a);
     const act=a.action;if(!act)continue;
     act.elapsed+=dt;act.phaseTime+=dt;
-    const live=act.targetId==='here'||act.targetId==='safe-air'?act.goal:targets(w,a.id).find(t=>t.id===act.targetId);
+    const live=act.kind==='watch'||act.targetId==='here'||act.targetId==='safe-air'?act.goal:targets(w,a.id).find(t=>t.id===act.targetId);
     if(!live||dist(live,act.goal)>.035){safety(w,a);recordEvent(w,'target_moved',a.id,act.targetId);continue;}
     if(act.phase==='moving'){
       if(a.species==='snail'){
@@ -255,12 +259,14 @@ export function stepWorld(w,dt){
       if(act.phaseTime>.38){act.phase='doing';act.phaseTime=0;recordEvent(w,'arrived',a.id,act.targetId,{source:act.source});}
     }else{
       if(['drink','wait'].includes(act.kind)){const water=w.objects.find(o=>o.id==='water');a.heading=Math.atan2(water.x-a.x,water.z-a.z);}
+      if(act.kind==='watch'){const other=w.residents[act.targetId];if(other)a.heading=Math.atan2(other.x-a.x,other.z-a.z);}
       if(act.phaseTime>=act.duration){
         const water=w.objects.find(o=>o.id==='water');
         if(act.kind==='drink'&&water.water>.02){water.water=Math.max(0,water.water-.07);a.need=Math.max(0,a.need-.65);recordEvent(w,'drank',a.id,'water',{source:act.source});}
         if(act.kind==='feed'){a.need=Math.max(0,a.need-.6);recordEvent(w,'fed',a.id,'flowers',{source:act.source});}
         if(act.kind==='shelter'&&(inShade(w,a)||targets(w,a.id).find(t=>t.id===act.targetId)?.damp)){a.need=Math.max(0,a.need-.45);recordEvent(w,'sheltered',a.id,act.targetId,{source:act.source});}
         if(act.kind==='wait')recordEvent(w,'waited',a.id,act.targetId,{nearby:neighbors(w,a.id).map(n=>n.residentId),source:act.source});
+        if(act.kind==='watch'&&neighbors(w,a.id).some(n=>n.residentId===act.targetId))recordEvent(w,'watched',a.id,a.support||'nearby',{otherId:act.targetId,source:act.source});
         recordEvent(w,'action_completed',a.id,act.targetId,{action:act.id,source:act.source});a.action=null;a.cooldown=.8;
       }
     }
@@ -271,14 +277,15 @@ export function invalidateForEdit(w,id){
   const o=w.objects.find(o=>o.id===id);
   for(const a of Object.values(w.residents)){
     a.queue=[];
-    const target=targets(w,a.id).find(t=>t.id===(a.action?.targetId||a.support));
+    const target=targets(w,a.id).find(t=>t.id===(['rest','watch'].includes(a.action?.kind)?a.support:a.action?.targetId||a.support));
     if(target?.owner===id){safety(w,a);recordEvent(w,'target_moved',a.id,id);}
-    if(o&&groundDist(a,o)<1.05){a.startled=1.2;recordEvent(w,'disturbed',a.id,id);}
+    if(o&&groundDist(a,o)<1.05){a.startled=1.2;recordEvent(w,'disturbed',a.id,id);if(['rest','watch'].includes(a.action?.kind)){a.action=null;a.queue=[];a.cooldown=.4;}}
   }
 }
 export function moveObject(w,id,x,z){
   const o=w.objects.find(o=>o.id===id);if(!o||!finite(x)||!finite(z))return false;
   x=clamp(x,FLOOR.minX+o.radius,FLOOR.maxX-o.radius);z=clamp(z,FLOOR.minZ+o.radius,FLOOR.maxZ-o.radius);
+  if(Math.hypot(x-o.x,z-o.z)<1e-6)return false;
   if(w.objects.some(b=>b.id!==id&&Math.hypot(b.x-x,b.z-z)<o.radius+b.radius+.10))return false;
   if(Object.values(w.residents).some(a=>a.y<.12&&Math.hypot(a.x-x,a.z-z)<o.radius+.18))return false;
   o.x=x;o.z=z;return true;

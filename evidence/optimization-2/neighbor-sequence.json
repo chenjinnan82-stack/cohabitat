@@ -1,0 +1,886 @@
+{
+  "note": "Actual accepted model decisions and completed observations; not proof of learned friendship. Full event buffer contains only last400events.",
+  "decisions": [
+    {
+      "id": "482a042d-b01c-425f-b86b-51cd78163eaa",
+      "residentId": "sparrow-a",
+      "revision": 5,
+      "actions": [
+        "watch:sparrow-b"
+      ],
+      "source": "ollama",
+      "requestedModel": "qwen2.5:7b",
+      "servedModel": "qwen2.5:7b",
+      "durationMs": 2415,
+      "usage": {
+        "prompt_tokens": 559,
+        "completion_tokens": 10,
+        "loadMs": 2,
+        "evalMs": 450,
+        "promptMs": 1939
+      },
+      "receivedMs": 2418,
+      "applied": true,
+      "request": {
+        "residentId": "sparrow-a",
+        "species": "sparrow",
+        "revision": 5,
+        "perception": {
+          "position": {
+            "x": 0.3689888097839877,
+            "y": 0,
+            "z": 1.1707195102530579
+          },
+          "simTime": 139.1,
+          "need": 0.11,
+          "needMeans": "thirst",
+          "preference": "Amber: curious, approaches resources readily, tolerates a familiar neighbor, avoids repeated disturbance.",
+          "inShade": false
+        },
+        "neighbors": [
+          {
+            "residentId": "sparrow-b",
+            "species": "sparrow",
+            "position": {
+              "x": -0.3610111902160123,
+              "y": 0.15,
+              "z": 1.380719510253058
+            },
+            "activity": "drink",
+            "distance": 0.77
+          },
+          {
+            "residentId": "snail",
+            "species": "snail",
+            "position": {
+              "x": -1.52,
+              "y": 0,
+              "z": 1.42
+            },
+            "activity": "visit",
+            "distance": 1.91
+          }
+        ],
+        "memory": [
+          {
+            "id": 136,
+            "at": 113.6,
+            "type": "watched",
+            "residentId": "sparrow-a",
+            "targetId": "water-near",
+            "otherId": "sparrow-b",
+            "source": "model",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 1.1800000000000002
+            }
+          },
+          {
+            "id": 138,
+            "at": 121.2,
+            "type": "target_moved",
+            "residentId": "sparrow-a",
+            "targetId": "water",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 1.1800000000000002
+            }
+          },
+          {
+            "id": 139,
+            "at": 121.2,
+            "type": "disturbed",
+            "residentId": "sparrow-a",
+            "targetId": "water",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 1.1800000000000002
+            }
+          },
+          {
+            "id": 148,
+            "at": 123,
+            "type": "neighbor_left",
+            "residentId": "sparrow-a",
+            "targetId": "nearby",
+            "otherId": "snail",
+            "position": {
+              "x": -1.675465768133657,
+              "y": 1.9575732656497051,
+              "z": -0.8625712497096805
+            }
+          },
+          {
+            "id": 160,
+            "at": 124.6,
+            "type": "arrived",
+            "residentId": "sparrow-a",
+            "targetId": "rail-left",
+            "source": "safety",
+            "position": {
+              "x": -2.35,
+              "y": 0.78,
+              "z": -1.96
+            }
+          },
+          {
+            "id": 169,
+            "at": 131,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-a",
+            "targetId": "nearby",
+            "otherId": "snail",
+            "position": {
+              "x": -0.9756804021931678,
+              "y": 1.9555167499496358,
+              "z": -0.3775701044835085
+            }
+          },
+          {
+            "id": 170,
+            "at": 131,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-a",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": -0.9756804021931678,
+              "y": 1.9555167499496358,
+              "z": -0.3775701044835085
+            }
+          },
+          {
+            "id": 179,
+            "at": 132.8,
+            "type": "neighbor_left",
+            "residentId": "sparrow-a",
+            "targetId": "nearby",
+            "otherId": "sparrow-b",
+            "position": {
+              "x": 0.3689888097839877,
+              "y": 0,
+              "z": 1.1707195102530579
+            }
+          },
+          {
+            "id": 182,
+            "at": 133.1,
+            "type": "arrived",
+            "residentId": "sparrow-a",
+            "targetId": "water-wait",
+            "source": "model",
+            "position": {
+              "x": 0.3689888097839877,
+              "y": 0,
+              "z": 1.1707195102530579
+            }
+          },
+          {
+            "id": 183,
+            "at": 133.2,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-a",
+            "targetId": "nearby",
+            "otherId": "sparrow-b",
+            "position": {
+              "x": 0.3689888097839877,
+              "y": 0,
+              "z": 1.1707195102530579
+            }
+          },
+          {
+            "id": 198,
+            "at": 138.4,
+            "type": "neighbor_left",
+            "residentId": "sparrow-a",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": 0.3689888097839877,
+              "y": 0,
+              "z": 1.1707195102530579
+            }
+          },
+          {
+            "id": 199,
+            "at": 138.4,
+            "type": "shared_space",
+            "residentId": "sparrow-a",
+            "targetId": "water-wait",
+            "otherId": "sparrow-b",
+            "position": {
+              "x": 0.3689888097839877,
+              "y": 0,
+              "z": 1.1707195102530579
+            }
+          }
+        ],
+        "candidates": [
+          {
+            "id": "visit:rail-left",
+            "kind": "visit",
+            "targetId": "rail-left",
+            "description": "Move to rail-left and look around",
+            "position": {
+              "x": -2.35,
+              "y": 0.78,
+              "z": -1.96
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "visit:rail-right",
+            "kind": "visit",
+            "targetId": "rail-right",
+            "description": "Move to rail-right and look around",
+            "position": {
+              "x": 2.35,
+              "y": 0.78,
+              "z": -1.96
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "visit:water-far",
+            "kind": "visit",
+            "targetId": "water-far",
+            "description": "Move to water-far and look around",
+            "position": {
+              "x": -0.3610111902160123,
+              "y": 0.15,
+              "z": 0.5807195102530579
+            },
+            "shade": false,
+            "damp": true
+          },
+          {
+            "id": "wait:water-wait",
+            "kind": "wait",
+            "targetId": "water-wait",
+            "description": "Wait near the water and watch its users",
+            "position": {
+              "x": 0.3689888097839877,
+              "y": 0,
+              "z": 1.1707195102530579
+            },
+            "shade": false,
+            "damp": true
+          },
+          {
+            "id": "visit:ficus-branch",
+            "kind": "visit",
+            "targetId": "ficus-branch",
+            "description": "Move to ficus-branch and look around",
+            "position": {
+              "x": -0.8200000000000001,
+              "y": 1.1,
+              "z": -0.27
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "visit:maple-branch",
+            "kind": "visit",
+            "targetId": "maple-branch",
+            "description": "Move to maple-branch and look around",
+            "position": {
+              "x": 0.98,
+              "y": 1.05,
+              "z": -0.4
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "watch:sparrow-b",
+            "kind": "watch",
+            "targetId": "sparrow-b",
+            "description": "Stay here and watch sparrow-b for 12 seconds; no travel",
+            "position": {
+              "x": 0.3689888097839877,
+              "y": 0,
+              "z": 1.1707195102530579
+            },
+            "shade": false
+          },
+          {
+            "id": "watch:snail",
+            "kind": "watch",
+            "targetId": "snail",
+            "description": "Stay here and watch snail for 12 seconds; no travel",
+            "position": {
+              "x": 0.3689888097839877,
+              "y": 0,
+              "z": 1.1707195102530579
+            },
+            "shade": false
+          },
+          {
+            "id": "rest:here",
+            "kind": "rest",
+            "targetId": "here",
+            "description": "Settle here for 20 seconds; no travel or need to keep exploring",
+            "position": {
+              "x": 0.3689888097839877,
+              "y": 0,
+              "z": 1.1707195102530579
+            },
+            "shade": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "3e346e66-e2de-421b-abcd-e53714708a4e",
+      "residentId": "sparrow-b",
+      "revision": 5,
+      "actions": [
+        "watch:sparrow-a"
+      ],
+      "source": "ollama",
+      "requestedModel": "qwen2.5:7b",
+      "servedModel": "qwen2.5:7b",
+      "durationMs": 2281,
+      "usage": {
+        "prompt_tokens": 549,
+        "completion_tokens": 10,
+        "loadMs": 2,
+        "evalMs": 445,
+        "promptMs": 1811
+      },
+      "receivedMs": 2287,
+      "applied": true,
+      "request": {
+        "residentId": "sparrow-b",
+        "species": "sparrow",
+        "revision": 5,
+        "perception": {
+          "position": {
+            "x": -0.3610111902160123,
+            "y": 0.15,
+            "z": 1.380719510253058
+          },
+          "simTime": 141.8,
+          "need": 0,
+          "needMeans": "thirst",
+          "preference": "Ash: cautious, watches before approaching, remembers who recently occupied a place, may share after calm encounters.",
+          "inShade": false
+        },
+        "neighbors": [
+          {
+            "residentId": "sparrow-a",
+            "species": "sparrow",
+            "position": {
+              "x": 0.3689888097839877,
+              "y": 0,
+              "z": 1.1707195102530579
+            },
+            "activity": "watch",
+            "distance": 0.77
+          },
+          {
+            "residentId": "snail",
+            "species": "snail",
+            "position": {
+              "x": -1.52,
+              "y": 0,
+              "z": 1.42
+            },
+            "activity": "visit",
+            "distance": 1.17
+          }
+        ],
+        "memory": [
+          {
+            "id": 140,
+            "at": 121.2,
+            "type": "target_moved",
+            "residentId": "sparrow-b",
+            "targetId": "water",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            }
+          },
+          {
+            "id": 141,
+            "at": 121.2,
+            "type": "disturbed",
+            "residentId": "sparrow-b",
+            "targetId": "water",
+            "position": {
+              "x": -0.42,
+              "y": 0.15,
+              "z": 0.38
+            }
+          },
+          {
+            "id": 149,
+            "at": 123,
+            "type": "neighbor_left",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "snail",
+            "position": {
+              "x": 1.419992245660364,
+              "y": 1.9340451462302473,
+              "z": -1.1743616804495494
+            }
+          },
+          {
+            "id": 158,
+            "at": 124.6,
+            "type": "arrived",
+            "residentId": "sparrow-b",
+            "targetId": "rail-right",
+            "source": "safety",
+            "position": {
+              "x": 2.35,
+              "y": 0.78,
+              "z": -1.96
+            }
+          },
+          {
+            "id": 180,
+            "at": 132.8,
+            "type": "neighbor_left",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "sparrow-a",
+            "position": {
+              "x": 1.5693118547380283,
+              "y": 1.83295875065263,
+              "z": -0.9979751556495298
+            }
+          },
+          {
+            "id": 184,
+            "at": 133.2,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "sparrow-a",
+            "position": {
+              "x": 1.214895701586044,
+              "y": 2.035288177330785,
+              "z": -0.5612359190662499
+            }
+          },
+          {
+            "id": 185,
+            "at": 133.2,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": 1.214895701586044,
+              "y": 2.035288177330785,
+              "z": -0.5612359190662499
+            }
+          },
+          {
+            "id": 187,
+            "at": 133.5,
+            "type": "neighbor_arrived",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "snail",
+            "position": {
+              "x": 0.8474345178231462,
+              "y": 1.9780825984499444,
+              "z": -0.10842157794964846
+            }
+          },
+          {
+            "id": 192,
+            "at": 135.5,
+            "type": "arrived",
+            "residentId": "sparrow-b",
+            "targetId": "water-near",
+            "source": "model",
+            "position": {
+              "x": -0.3610111902160123,
+              "y": 0.15,
+              "z": 1.380719510253058
+            }
+          },
+          {
+            "id": 197,
+            "at": 138.1,
+            "type": "neighbor_left",
+            "residentId": "sparrow-b",
+            "targetId": "nearby",
+            "otherId": "butterfly",
+            "position": {
+              "x": -0.3610111902160123,
+              "y": 0.15,
+              "z": 1.380719510253058
+            }
+          },
+          {
+            "id": 200,
+            "at": 138.4,
+            "type": "shared_space",
+            "residentId": "sparrow-b",
+            "targetId": "water-near",
+            "otherId": "sparrow-a",
+            "position": {
+              "x": -0.3610111902160123,
+              "y": 0.15,
+              "z": 1.380719510253058
+            }
+          },
+          {
+            "id": 202,
+            "at": 140.5,
+            "type": "drank",
+            "residentId": "sparrow-b",
+            "targetId": "water",
+            "source": "model",
+            "position": {
+              "x": -0.3610111902160123,
+              "y": 0.15,
+              "z": 1.380719510253058
+            }
+          }
+        ],
+        "candidates": [
+          {
+            "id": "visit:rail-left",
+            "kind": "visit",
+            "targetId": "rail-left",
+            "description": "Move to rail-left and look around",
+            "position": {
+              "x": -2.35,
+              "y": 0.78,
+              "z": -1.96
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "visit:rail-right",
+            "kind": "visit",
+            "targetId": "rail-right",
+            "description": "Move to rail-right and look around",
+            "position": {
+              "x": 2.35,
+              "y": 0.78,
+              "z": -1.96
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "visit:water-far",
+            "kind": "visit",
+            "targetId": "water-far",
+            "description": "Move to water-far and look around",
+            "position": {
+              "x": -0.3610111902160123,
+              "y": 0.15,
+              "z": 0.5807195102530579
+            },
+            "shade": false,
+            "damp": true
+          },
+          {
+            "id": "visit:ficus-branch",
+            "kind": "visit",
+            "targetId": "ficus-branch",
+            "description": "Move to ficus-branch and look around",
+            "position": {
+              "x": -0.8200000000000001,
+              "y": 1.1,
+              "z": -0.27
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "visit:maple-branch",
+            "kind": "visit",
+            "targetId": "maple-branch",
+            "description": "Move to maple-branch and look around",
+            "position": {
+              "x": 0.98,
+              "y": 1.05,
+              "z": -0.4
+            },
+            "shade": false,
+            "damp": false
+          },
+          {
+            "id": "watch:sparrow-a",
+            "kind": "watch",
+            "targetId": "sparrow-a",
+            "description": "Stay here and watch sparrow-a for 12 seconds; no travel",
+            "position": {
+              "x": -0.3610111902160123,
+              "y": 0.15,
+              "z": 1.380719510253058
+            },
+            "shade": false
+          },
+          {
+            "id": "watch:snail",
+            "kind": "watch",
+            "targetId": "snail",
+            "description": "Stay here and watch snail for 12 seconds; no travel",
+            "position": {
+              "x": -0.3610111902160123,
+              "y": 0.15,
+              "z": 1.380719510253058
+            },
+            "shade": false
+          },
+          {
+            "id": "rest:here",
+            "kind": "rest",
+            "targetId": "here",
+            "description": "Settle here for 20 seconds; no travel or need to keep exploring",
+            "position": {
+              "x": -0.3610111902160123,
+              "y": 0.15,
+              "z": 1.380719510253058
+            },
+            "shade": false
+          }
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": 196,
+      "at": 138.1,
+      "type": "action_completed",
+      "residentId": "sparrow-a",
+      "targetId": "water-wait",
+      "action": "visit:water-wait",
+      "source": "model"
+    },
+    {
+      "id": 197,
+      "at": 138.1,
+      "type": "neighbor_left",
+      "residentId": "sparrow-b",
+      "targetId": "nearby",
+      "otherId": "butterfly"
+    },
+    {
+      "id": 198,
+      "at": 138.4,
+      "type": "neighbor_left",
+      "residentId": "sparrow-a",
+      "targetId": "nearby",
+      "otherId": "butterfly"
+    },
+    {
+      "id": 199,
+      "at": 138.4,
+      "type": "shared_space",
+      "residentId": "sparrow-a",
+      "targetId": "water-wait",
+      "otherId": "sparrow-b"
+    },
+    {
+      "id": 200,
+      "at": 138.4,
+      "type": "shared_space",
+      "residentId": "sparrow-b",
+      "targetId": "water-near",
+      "otherId": "sparrow-a"
+    },
+    {
+      "id": 201,
+      "at": 138.7,
+      "type": "arrived",
+      "residentId": "butterfly",
+      "targetId": "maple-tip",
+      "source": "model"
+    },
+    {
+      "id": 202,
+      "at": 140.5,
+      "type": "drank",
+      "residentId": "sparrow-b",
+      "targetId": "water",
+      "source": "model"
+    },
+    {
+      "id": 203,
+      "at": 140.5,
+      "type": "action_completed",
+      "residentId": "sparrow-b",
+      "targetId": "water-near",
+      "action": "drink:water-near",
+      "source": "model"
+    },
+    {
+      "id": 204,
+      "at": 141.5,
+      "type": "plan_accepted",
+      "residentId": "sparrow-a",
+      "targetId": null,
+      "actions": [
+        "watch:sparrow-b"
+      ],
+      "source": "model"
+    },
+    {
+      "id": 205,
+      "at": 141.5,
+      "type": "model_applied",
+      "residentId": "sparrow-a",
+      "targetId": null,
+      "decisionId": "482a042d-b01c-425f-b86b-51cd78163eaa"
+    },
+    {
+      "id": 206,
+      "at": 142.6,
+      "type": "action_completed",
+      "residentId": "snail",
+      "targetId": "ground-left",
+      "action": "visit:ground-left",
+      "source": "model"
+    },
+    {
+      "id": 207,
+      "at": 143.8,
+      "type": "action_completed",
+      "residentId": "butterfly",
+      "targetId": "maple-tip",
+      "action": "visit:maple-tip",
+      "source": "model"
+    },
+    {
+      "id": 208,
+      "at": 144.1,
+      "type": "plan_accepted",
+      "residentId": "sparrow-b",
+      "targetId": null,
+      "actions": [
+        "watch:sparrow-a"
+      ],
+      "source": "model"
+    },
+    {
+      "id": 209,
+      "at": 144.1,
+      "type": "model_applied",
+      "residentId": "sparrow-b",
+      "targetId": null,
+      "decisionId": "3e346e66-e2de-421b-abcd-e53714708a4e"
+    },
+    {
+      "id": 210,
+      "at": 145.8,
+      "type": "plan_accepted",
+      "residentId": "snail",
+      "targetId": null,
+      "actions": [
+        "visit:ground-middle"
+      ],
+      "source": "model"
+    },
+    {
+      "id": 211,
+      "at": 145.8,
+      "type": "model_applied",
+      "residentId": "snail",
+      "targetId": null,
+      "decisionId": "ff3a45f1-43d1-4fbd-b910-8d38d71555ee"
+    },
+    {
+      "id": 212,
+      "at": 147.3,
+      "type": "plan_accepted",
+      "residentId": "butterfly",
+      "targetId": null,
+      "actions": [
+        "rest:here"
+      ],
+      "source": "model"
+    },
+    {
+      "id": 213,
+      "at": 147.3,
+      "type": "model_applied",
+      "residentId": "butterfly",
+      "targetId": null,
+      "decisionId": "4d54da3d-5467-4efb-9df1-678e545639db"
+    },
+    {
+      "id": 214,
+      "at": 147.8,
+      "type": "neighbor_arrived",
+      "residentId": "snail",
+      "targetId": "nearby",
+      "otherId": "sparrow-a"
+    },
+    {
+      "id": 215,
+      "at": 153.5,
+      "type": "watched",
+      "residentId": "sparrow-a",
+      "targetId": "water-wait",
+      "otherId": "sparrow-b",
+      "source": "model"
+    },
+    {
+      "id": 216,
+      "at": 153.5,
+      "type": "action_completed",
+      "residentId": "sparrow-a",
+      "targetId": "sparrow-b",
+      "action": "watch:sparrow-b",
+      "source": "model"
+    },
+    {
+      "id": 217,
+      "at": 156.1,
+      "type": "watched",
+      "residentId": "sparrow-b",
+      "targetId": "water-near",
+      "otherId": "sparrow-a",
+      "source": "model"
+    },
+    {
+      "id": 218,
+      "at": 156.1,
+      "type": "action_completed",
+      "residentId": "sparrow-b",
+      "targetId": "sparrow-a",
+      "action": "watch:sparrow-a",
+      "source": "model"
+    },
+    {
+      "id": 219,
+      "at": 157.3,
+      "type": "plan_accepted",
+      "residentId": "sparrow-a",
+      "targetId": null,
+      "actions": [
+        "visit:water-far"
+      ],
+      "source": "model"
+    },
+    {
+      "id": 220,
+      "at": 157.3,
+      "type": "model_applied",
+      "residentId": "sparrow-a",
+      "targetId": null,
+      "decisionId": "6a7c648a-fa9c-4a88-8f4c-cba82dcfa910"
+    }
+  ]
+}

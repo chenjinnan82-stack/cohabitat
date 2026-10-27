@@ -195,7 +195,7 @@ export function createView(canvas,world){
         const p=g.userData,drink=a.action?.kind==='drink'&&a.action.phase==='doing',hop=moving&&a.action.locomotion==='hop';
         p.torso.rotation.x=drink?.35+Math.max(0,Math.sin(t*4))*.55:moving?-.15:Math.sin(t*1.6)*.018;
         p.torso.position.y=.16+(moving?0:Math.sin(t*2.2)*.003)+(landing?Math.sin(a.action.phaseTime/.38*Math.PI)*-.035:0);
-        const other=(a.seen||[]).map(id=>w.residents[id]).filter(Boolean).sort((b,c)=>Math.hypot(b.x-a.x,b.z-a.z)-Math.hypot(c.x-a.x,c.z-a.z))[0];
+        const other=a.action?.kind==='watch'?w.residents[a.action.targetId]:(a.seen||[]).map(id=>w.residents[id]).filter(Boolean).sort((b,c)=>Math.hypot(b.x-a.x,b.z-a.z)-Math.hypot(c.x-a.x,c.z-a.z))[0];
         const look=!moving&&!drink&&other?clamp(Math.atan2(Math.sin(Math.atan2(other.x-a.x,other.z-a.z)-g.rotation.y),Math.cos(Math.atan2(other.x-a.x,other.z-a.z)-g.rotation.y)),-.65,.65):moving?0:Math.sin(t*.65+(a.id==='sparrow-a'?0:2))*.25;
         p.head.rotation.y+=(look-p.head.rotation.y)*Math.min(1,dt*5);p.head.rotation.x=drink?.30:0;
         p.wings.forEach((wing,i)=>{const sign=i===0?-1:1;wing.rotation.z=hop?sign*.16:moving?sign*(.9+Math.sin(t*28)*.85):sign*.035;wing.rotation.x=moving&&!hop?-.25:0;});

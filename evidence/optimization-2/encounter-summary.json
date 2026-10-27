@@ -1,0 +1,21 @@
+{
+  "sparrow-a-first-shared-watch / actual": {
+    "visit:water-wait": 3
+  },
+  "sparrow-a-first-shared-watch / no-encounters": {
+    "visit:water-wait": 3
+  },
+  "sparrow-a-first-shared-watch / empty-memory": {
+    "visit:water-wait": 3
+  },
+  "sparrow-b-first-shared-watch / actual": {
+    "visit:water-near": 2,
+    "watch:sparrow-a": 1
+  },
+  "sparrow-b-first-shared-watch / no-encounters": {
+    "watch:sparrow-a": 3
+  },
+  "sparrow-b-first-shared-watch / empty-memory": {
+    "visit:water-near": 3
+  }
+}
