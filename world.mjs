@@ -258,7 +258,7 @@ export function stepWorld(w,dt){
         const water=w.objects.find(o=>o.id==='water');
         if(act.kind==='drink'&&water.water>.02){water.water=Math.max(0,water.water-.07);a.need=Math.max(0,a.need-.65);recordEvent(w,'drank',a.id,'water',{source:act.source});}
         if(act.kind==='feed'){a.need=Math.max(0,a.need-.6);recordEvent(w,'fed',a.id,'flowers',{source:act.source});}
-        if(act.kind==='shelter'&&(inShade(w,a)||act.damp)){a.need=Math.max(0,a.need-.45);recordEvent(w,'sheltered',a.id,act.targetId,{source:act.source});}
+        if(act.kind==='shelter'&&(inShade(w,a)||targets(w,a.id).find(t=>t.id===act.targetId)?.damp)){a.need=Math.max(0,a.need-.45);recordEvent(w,'sheltered',a.id,act.targetId,{source:act.source});}
         if(act.kind==='wait')recordEvent(w,'waited',a.id,act.targetId,{nearby:neighbors(w,a.id).map(n=>n.residentId),source:act.source});
         recordEvent(w,'action_completed',a.id,act.targetId,{action:act.id,source:act.source});a.action=null;a.cooldown=.8;
       }
